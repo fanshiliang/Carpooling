@@ -1,0 +1,5 @@
+com\example\helloworld\IntegrationTest.class
+com\example\helloworld\resources\ProtectedResourceTest.class
+com\example\helloworld\resources\PeopleResourceTest$1.class
+com\example\helloworld\resources\PeopleResourceTest.class
+com\example\helloworld\resources\PersonResourceTest.class
