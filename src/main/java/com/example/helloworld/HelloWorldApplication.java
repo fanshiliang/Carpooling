@@ -1,7 +1,5 @@
 package com.example.helloworld;
-import com.example.helloworld.auth.ExampleAuthorizer;
 import io.dropwizard.auth.AuthValueFactoryProvider;
-import com.example.helloworld.auth.ExampleAuthenticator;
 import com.example.helloworld.cli.RenderCommand;
 import com.example.helloworld.core.Person;
 import com.example.helloworld.core.Template;
@@ -11,6 +9,7 @@ import com.example.helloworld.filter.DateRequiredFeature;
 import com.example.helloworld.health.TemplateHealthCheck;
 import com.example.helloworld.resources.FilteredResource;
 import com.example.helloworld.resources.HelloWorldResource;
+import com.example.helloworld.resources.HomeResource;
 import com.example.helloworld.resources.PeopleResource;
 import com.example.helloworld.resources.PersonResource;
 import com.example.helloworld.resources.ProtectedResource;
@@ -83,11 +82,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
 
         environment.healthChecks().register("template", new TemplateHealthCheck(template));
         environment.jersey().register(DateRequiredFeature.class);
-        environment.jersey().register(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<User>()
-                .setAuthenticator(new ExampleAuthenticator())
-                .setAuthorizer(new ExampleAuthorizer())
-                .setRealm("SUPER SECRET STUFF")
-                .buildAuthFilter()));
+
         environment.jersey().register(new AuthValueFactoryProvider.Binder<>(User.class));
         environment.jersey().register(RolesAllowedDynamicFeature.class);
         environment.jersey().register(new HelloWorldResource(template));
@@ -97,5 +92,6 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         environment.jersey().register(new PersonResource(dao));
         environment.jersey().register(new FilteredResource());
         environment.jersey().register(new SignIn());
+        environment.jersey().register(new HomeResource(null));
     }
 }
