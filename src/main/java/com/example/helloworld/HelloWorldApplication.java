@@ -1,5 +1,6 @@
 package com.example.helloworld;
 
+import io.dropwizard.auth.AuthValueFactoryProvider;
 import com.example.helloworld.cli.RenderCommand;
 import com.example.helloworld.core.Person;
 import com.example.helloworld.core.Template;
@@ -9,6 +10,10 @@ import com.example.helloworld.health.TemplateHealthCheck;
 import com.example.helloworld.resources.FilteredResource;
 import com.example.helloworld.resources.HelloWorldResource;
 import com.example.helloworld.resources.UserResource;
+import com.example.helloworld.resources.HomeResource;
+import com.example.helloworld.resources.PeopleResource;
+import com.example.helloworld.resources.PersonResource;
+import com.example.helloworld.resources.SignIn;
 import com.example.helloworld.resources.ViewResource;
 
 import io.dropwizard.jdbi.DBIFactory;
@@ -78,17 +83,20 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         final Template template = configuration.buildTemplate();
         environment.healthChecks().register("template", new TemplateHealthCheck(template));
         environment.jersey().register(DateRequiredFeature.class);
+
+
         environment.jersey().register(RolesAllowedDynamicFeature.class);
         environment.jersey().register(new HelloWorldResource(template));
         environment.jersey().register(new ViewResource());
         environment.jersey().register(new FilteredResource());
+
         
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
         final UserDAO userDao = jdbi.onDemand(UserDAO.class);
         environment.jersey().register(new UserResource(userDao,template));
-        
-        
-        
+
+        environment.jersey().register(new SignIn());
+        environment.jersey().register(new HomeResource(null));
     }
 }
