@@ -14,6 +14,7 @@ import com.example.helloworld.resources.HelloWorldResource;
 import com.example.helloworld.resources.PeopleResource;
 import com.example.helloworld.resources.PersonResource;
 import com.example.helloworld.resources.ProtectedResource;
+import com.example.helloworld.resources.SignIn;
 import com.example.helloworld.resources.ViewResource;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
@@ -95,5 +96,6 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         environment.jersey().register(new PeopleResource(dao));
         environment.jersey().register(new PersonResource(dao));
         environment.jersey().register(new FilteredResource());
+        environment.jersey().register(new SignIn());
     }
 }
