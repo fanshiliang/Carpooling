@@ -1,19 +1,37 @@
 package com.courseExercise.carpooling.core;
 
-import java.security.Principal;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.MoreObjects;
 
-public class User implements Principal {
-    private final String name;
+public class User {
+	private String id;
 
-    public User(String name) {
-        this.name = name;
+    private String password;
+
+    public User() {
+        // Jackson deserialization
     }
 
-    public String getName() {
-        return name;
+    public User(String id, String password) {
+        this.id = id;
+        this.password = password;
     }
 
-    public int getId() {
-        return (int) (Math.random() * 100);
+    @JsonProperty
+    public String getId() {
+        return id;
+    }
+
+    @JsonProperty
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("password", password)
+                .toString();
     }
 }

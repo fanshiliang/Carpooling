@@ -20,14 +20,12 @@ import java.util.Objects;
 })
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO) 
+    long id;
 
-    @Column(name = "fullName", nullable = false)
-    private String fullName;
+    @Column(name = "fullName", nullable = false) String fullName;
 
-    @Column(name = "jobTitle", nullable = false)
-    private String jobTitle;
+    @Column(name = "jobTitle", nullable = false) String jobTitle;
 
     public Person() {
     }

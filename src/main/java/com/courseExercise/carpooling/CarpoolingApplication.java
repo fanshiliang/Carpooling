@@ -1,3 +1,4 @@
+
 package com.courseExercise.carpooling;
 
 import io.dropwizard.auth.AuthValueFactoryProvider;
@@ -7,6 +8,7 @@ import com.courseExercise.carpooling.core.Person;
 import com.courseExercise.carpooling.core.Template;
 import com.courseExercise.carpooling.core.User;
 import com.courseExercise.carpooling.db.PersonDAO;
+import com.courseExercise.carpooling.db.UserDAO;
 import com.courseExercise.carpooling.filter.DateRequiredFeature;
 import com.courseExercise.carpooling.health.TemplateHealthCheck;
 import com.courseExercise.carpooling.resources.FilteredResource;
@@ -14,14 +16,13 @@ import com.courseExercise.carpooling.resources.HelloWorldResource;
 import com.courseExercise.carpooling.resources.HomeResource;
 import com.courseExercise.carpooling.resources.PeopleResource;
 import com.courseExercise.carpooling.resources.PersonResource;
-import com.courseExercise.carpooling.resources.ProtectedResource;
 import com.courseExercise.carpooling.resources.SignIn;
+import com.courseExercise.carpooling.resources.UserResource;
 import com.courseExercise.carpooling.resources.ViewResource;
 
+import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
-import io.dropwizard.auth.AuthDynamicFeature;
-import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
 import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
 import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.db.DataSourceFactory;
@@ -30,7 +31,10 @@ import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
+
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
+import org.skife.jdbi.v2.DBI;
+
 import java.util.Map;
 
 public class CarpoolingApplication extends Application<CarpoolingConfiguration> {
@@ -81,19 +85,23 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
     @Override
     public void run(CarpoolingConfiguration configuration, Environment environment) {
         final PersonDAO dao = new PersonDAO(hibernateBundle.getSessionFactory());
-        final Template template = configuration.buildTemplate();
 
+        final Template template = configuration.buildTemplate();
         environment.healthChecks().register("template", new TemplateHealthCheck(template));
         environment.jersey().register(DateRequiredFeature.class);
 
-        environment.jersey().register(new AuthValueFactoryProvider.Binder<>(User.class));
+
         environment.jersey().register(RolesAllowedDynamicFeature.class);
         environment.jersey().register(new HelloWorldResource(template));
         environment.jersey().register(new ViewResource());
-        environment.jersey().register(new ProtectedResource());
-        environment.jersey().register(new PeopleResource(dao));
-        environment.jersey().register(new PersonResource(dao));
         environment.jersey().register(new FilteredResource());
+
+        
+        final DBIFactory factory = new DBIFactory();
+        final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
+        final UserDAO userDao = jdbi.onDemand(UserDAO.class);
+        environment.jersey().register(new UserResource(userDao,template));
+
         environment.jersey().register(new SignIn());
         environment.jersey().register(new HomeResource(null));
     }

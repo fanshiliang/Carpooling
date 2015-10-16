@@ -10,7 +10,7 @@ public class FilteredResource {
 
     @GET
     @DateRequired
-    @Path("hello")
+    @Path("/hello")
     public String sayHello() {
         return "hello";
     }
