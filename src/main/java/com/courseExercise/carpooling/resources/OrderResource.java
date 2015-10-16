@@ -10,6 +10,8 @@ import javax.ws.rs.core.MediaType;
 
 import com.courseExercise.carpooling.core.Order;
 import com.courseExercise.carpooling.db.MyDAO;
+import com.courseExercise.carpooling.views.LoginView;
+import com.courseExercise.carpooling.views.RaiseOrderView;
 
 @Path("/order")
 public class OrderResource {
@@ -26,5 +28,13 @@ public class OrderResource {
     @Produces(MediaType.APPLICATION_JSON)
 	public List<Order> findAllOrders(){
 		return myDAO.findAllOders();
+	}
+	
+	@Path("/raise")
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	public RaiseOrderView raiseOrder()
+	{
+		return new RaiseOrderView();
 	}
 }
