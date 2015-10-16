@@ -51,7 +51,7 @@ public interface MyDAO {
 	Order findOrderById(@Bind("orderNum") int orderNum);
 
 	// find available orders by ending
-	@SqlQuery("SELECT * FROM temp_orders t WHERE ( t.date > curdate() or (t.date = curdate() and t.time > curtime()) ) and seatAvailable < seatTotal and t.ending = :ending and t.orderNum not in (select orderNum from user_orders where id = :id)")
+	@SqlQuery("SELECT * FROM temp_orders t WHERE ( t.date > curdate() or (t.date = curdate() and t.time > curtime()) ) and seatAvailable > 0 and t.ending = :ending and t.orderNum not in (select orderNum from user_orders where id = :id)")
 	@Mapper(OrderMapper.class)
 	Order findOrderByEnding(@Bind("ending") String ending, @Bind("id") String id);
 	
@@ -77,6 +77,4 @@ public interface MyDAO {
 	@SqlQuery("select MAX(orderNum) from temp_orders")
 	int findMaxOrderNum();
 	
-	
-
 }
