@@ -7,13 +7,14 @@ import com.courseExercise.carpooling.cli.RenderCommand;
 import com.courseExercise.carpooling.core.Person;
 import com.courseExercise.carpooling.core.Template;
 import com.courseExercise.carpooling.core.User;
+import com.courseExercise.carpooling.db.MyDAO;
 import com.courseExercise.carpooling.db.PersonDAO;
-import com.courseExercise.carpooling.db.UserDAO;
 import com.courseExercise.carpooling.filter.DateRequiredFeature;
 import com.courseExercise.carpooling.health.TemplateHealthCheck;
 import com.courseExercise.carpooling.resources.FilteredResource;
 import com.courseExercise.carpooling.resources.HelloWorldResource;
 import com.courseExercise.carpooling.resources.HomeResource;
+import com.courseExercise.carpooling.resources.OrderResource;
 import com.courseExercise.carpooling.resources.PeopleResource;
 import com.courseExercise.carpooling.resources.PersonResource;
 import com.courseExercise.carpooling.resources.SignIn;
@@ -96,11 +97,14 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
         environment.jersey().register(new ViewResource());
         environment.jersey().register(new FilteredResource());
 
-        
+        //create DAO instance
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
-        final UserDAO userDao = jdbi.onDemand(UserDAO.class);
-        environment.jersey().register(new UserResource(userDao,template));
+        final MyDAO myDAO = jdbi.onDemand(MyDAO.class);
+        
+        
+        environment.jersey().register(new UserResource(myDAO));
+        environment.jersey().register(new OrderResource(myDAO));
 
         environment.jersey().register(new SignIn());
         environment.jersey().register(new HomeResource(null));
