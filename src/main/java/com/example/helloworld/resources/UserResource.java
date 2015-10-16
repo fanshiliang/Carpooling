@@ -28,7 +28,7 @@ public class UserResource {
 		this.template = template;
 	}
 	
-
+	
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 	public User findById(){
@@ -36,6 +36,7 @@ public class UserResource {
 		return user;
 	}
     
+    @Path("/all")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 	public List<User> findAll(){
