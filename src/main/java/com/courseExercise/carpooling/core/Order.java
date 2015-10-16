@@ -16,6 +16,10 @@ public class Order {
 	private String ending;
 	private String route;
 	
+	public Order(){
+		
+	}
+	
 	public Order(int orderNum){
 		this.orderNum = orderNum;
 	}

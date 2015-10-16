@@ -1,8 +1,11 @@
 package com.courseExercise.carpooling.resources;
 
+import io.dropwizard.views.View;
+
 import java.util.List;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -24,7 +27,7 @@ public class UserResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 	public User findById(){
-		User user = userDAO.findUserById("12345");
+		User user = userDAO.findUserById("zhangsan");
 		return user;
 	}
     
@@ -35,17 +38,18 @@ public class UserResource {
 		return userDAO.findAllUsers();
 	}
     
+    
     /*
     @Path("/regist")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-	public User registUser(@FormParam("username") String username, @FormParam("password") String password){
+	public View registUser(@FormParam("username") String username, @FormParam("password") String password){
     	try{
     		userDAO.insertUser(username, password);
     	}catch(Exception e){
-    		return new User("123","123");
+    		return new View("/views/sigin.mustache");
     	}
 		return new User(username, password);
-	}*/
-	
+	}
+	*/
 }
