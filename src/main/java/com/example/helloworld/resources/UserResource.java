@@ -1,9 +1,11 @@
 package com.example.helloworld.resources;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -27,11 +29,17 @@ public class UserResource {
 	}
 	
 
-    @POST  
-	public User createUser(@FormParam("id") String id, @FormParam("passWord") String passWord){
-		User user = new User(id , passWord);
-		System.out.println(id);
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+	public User findById(){
+		User user = userDAO.findById("12345");
 		return user;
+	}
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+	public List<User> findAll(){
+		return userDAO.findAll();
 	}
 	
 	
