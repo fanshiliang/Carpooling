@@ -51,25 +51,18 @@ public class OrderResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Order raiseOrder(@FormParam("carType") String carType,
 			@FormParam("date") Date date,
+			@FormParam("time") String time,
 			@FormParam("totalSeats") String seatTotal,
 			@FormParam("availableSeats") String seatAvailable,
 			@FormParam("route") String route,
 			@FormParam("starting") String starting,
 			@FormParam("ending") String ending) {
-		newOrderNum ++;
-		Time time = new Time(12,12,12);
-		myDAO.insertTempOrder(newOrderNum, carType, Integer.parseInt(seatTotal), Integer.parseInt(seatAvailable), date, time, starting, ending, route);
 		
-		Order order = new Order();
-		order.setOrderNum(newOrderNum);
-		order.setSeatTotal(Integer.parseInt(seatTotal));
-		order.setSeatAvailable(Integer.parseInt(seatAvailable));
-		order.setDate(date);
-		order.setStarting(starting);
-		order.setEnding(ending);
-		order.setRoute(route);
-				
-		return order;
+		newOrderNum ++;
+		int totalSeats = Integer.parseInt(seatTotal);
+		int availableSeats = Integer.parseInt(seatAvailable);
+		myDAO.insertTempOrder(newOrderNum, carType, totalSeats, availableSeats, date, Time.valueOf(time), starting, ending, route);		
+		return myDAO.findOrderById(newOrderNum);
 	}
 	
 	@Path("/join")
