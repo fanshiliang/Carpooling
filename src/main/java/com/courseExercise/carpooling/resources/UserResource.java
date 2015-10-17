@@ -1,56 +1,55 @@
 package com.courseExercise.carpooling.resources;
 
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
+import io.dropwizard.views.View;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.courseExercise.carpooling.core.Template;
 import com.courseExercise.carpooling.core.User;
-import com.courseExercise.carpooling.db.UserDAO;
+import com.courseExercise.carpooling.db.MyDAO;
 
 
 @Path("/user")
 public class UserResource {
 	
-    private final AtomicLong counter;
-    private final Template template;
-    private UserDAO userDAO;
+    private MyDAO userDAO;
     
-	public UserResource(UserDAO userDAO, Template template){
+	public UserResource(MyDAO userDAO){
 		this.userDAO = userDAO;
-		this.counter = new AtomicLong();
-		this.template = template;
 	}
 	
 	
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 	public User findById(){
-		User user = userDAO.findById("12345");
+		User user = userDAO.findUserById("zhangsan");
 		return user;
 	}
     
     @Path("/all")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-	public List<User> findAll(){
-		return userDAO.findAll();
+	public List<User> findAllUsers(){
+		return userDAO.findAllUsers();
 	}
-	
-	
-	/*
-    @GET
-    @Timed(name = "get-requests")
-    @CacheControl(maxAge = 1, maxAgeUnit = TimeUnit.DAYS)
-    public LoginResult getUser(@PathParam("id") String id, @PathParam("password") String password) {
-    	if(password.equals(userDAO.findPasswordById(id))) return new LoginResult(true);
-        return new LoginResult(false);
-    }*/
+    
+    
+    /*
+    @Path("/regist")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+	public View registUser(@FormParam("username") String username, @FormParam("password") String password){
+    	try{
+    		userDAO.insertUser(username, password);
+    	}catch(Exception e){
+    		return new View("/views/sigin.mustache");
+    	}
+		return new User(username, password);
+	}
+	*/
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Rickie">
+    <link rel="icon" href="../../favicon.ico">
+    <title>
+      Sign in for carpooling
+    </title>
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/signin.css" rel="stylesheet">
+    <script src="../assets/js/bootstrap.js">
+    </script>
+  </head>
+  
+  <body>
+    <div class="container">
+      <form class="form-signin"  action="/order/raiseOrder" method="post">
+        <h2 class="form-signin-heading">
+          Raise Order
+        </h2>
+        <input type="text" id="inputUsername" class="form-control" name="carType" placeholder="车辆类型"
+        required autofocus>
+        <input type="date" id="inputPassword" class="form-control" name="date" placeholder="Date"
+        required>
+        <input type="text" class="form-control" name="totalSeats" placeholder="总座位数">
+        <input type="text" class="form-control" name="availableSeats" placeholder="剩余座位">
+        <input type="text" class="form-control" name="starting" placeholder="起点">
+        <input type="text" class="form-control" name="ending" placeholder="目的地">
+        <input type="text" class="form-control" name="route" placeholder="途径">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me">
+            Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+          Raise
+        </button>
+      </form>
+    </div>
+  </body>
+
+</html>
