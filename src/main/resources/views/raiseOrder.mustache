@@ -14,13 +14,12 @@
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/css/signin.css" rel="stylesheet">
-    <script src="../assets/js/bootstrap.js">
-    </script>
+	
   </head>
   
   <body>
     <div class="container">
-      <form class="form-signin"  action="/order/raiseOrder" method="post">
+      <form class="form-signin"  action="http://192.168.31.113:12306/order/raiseOrder" method="post">
         <h2 class="form-signin-heading">
           Raise Order
         </h2>
@@ -32,7 +31,7 @@
          <input type = "text" id = "hour" class = "form-control" name="hour" placeholder="时">
          <span class = "input-group-addon">:</span>
 		 <input type = "text" id = "minute" class = "form-control" name="minute" placeholder="分">
-		 <input type = "text" class = "form-control" name="time" style="display:none;">
+		 <input type = "text" id= "time" class = "form-control" name="time" style="display:none;">
 		</div>
         <input type="text" class="form-control" name="totalSeats" placeholder="总座位数">
         <input type="text" class="form-control" name="availableSeats" placeholder="剩余座位">
@@ -45,23 +44,23 @@
             Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="raise">
           Raise
         </button>
       </form>
     </div>
 	
+	<script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>
+	
 	<script>
-		$(funtion(){
-			$('#hour').blur(function(){
+		$(document).ready(function() {
+
+			$('#raise').click(function combineHour(){
 				$('#time').attr("value",$('#hour').val()+":"+$('#minute').val()+":00");
 			})
-			$('minute').blur(function(){
-				$('#time').attr("value",$('#hour').val()+":"+$('#minute').val()+":00");
-			})
-		
-		})
-		
+			
+		});
 	</script>
 	
   </body>
