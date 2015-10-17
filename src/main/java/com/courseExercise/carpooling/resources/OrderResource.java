@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.courseExercise.carpooling.core.Order;
 import com.courseExercise.carpooling.db.MyDAO;
+import com.courseExercise.carpooling.views.OrderView;
 
 @Path("/order")
 public class OrderResource {
@@ -26,6 +27,17 @@ public class OrderResource {
 		System.out.println(newOrderNum);
 	}
 	
+	@Path("/orderList")
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	public OrderView getOrderList(){
+		Order order = myDAO.findOrderById(1);
+		OrderView ov = new OrderView("/views/raiseOrder.mustache");
+		ov.setOrder(order);
+		ov.setOrderList(myDAO.findAllOders());
+		return ov;
+	}
+	
 	@Path("/all")
 	@GET
 	@Produces("application/json")
@@ -35,25 +47,24 @@ public class OrderResource {
 
 	@Path("/raiseOrder")
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Order raiseOrder(@FormParam("carType") String carType,
-			@FormParam("seatTotal") int seatTotal,
-			@FormParam("seatAvailable") int seatAvailable,
-			@FormParam("date") Date date, @FormParam("time") Time time,
+			@FormParam("date") Date date,
+			@FormParam("totalSeats") String seatTotal,
+			@FormParam("availableSeats") String seatAvailable,
 			@FormParam("route") String route,
 			@FormParam("starting") String starting,
 			@FormParam("ending") String ending) {
-		
 		newOrderNum ++;
-		myDAO.insertTempOrder(newOrderNum, carType, seatTotal, seatAvailable, date, time, starting, ending, route);
+		Time time = new Time(12,12,12);
+		myDAO.insertTempOrder(newOrderNum, carType, Integer.parseInt(seatTotal), Integer.parseInt(seatAvailable), date, time, starting, ending, route);
 		
 		Order order = new Order();
 		order.setOrderNum(newOrderNum);
-		order.setSeatTotal(seatTotal);
-		order.setSeatAvailable(seatAvailable);
+		order.setSeatTotal(Integer.parseInt(seatTotal));
+		order.setSeatAvailable(Integer.parseInt(seatAvailable));
 		order.setDate(date);
-		order.setTime(time);
 		order.setStarting(starting);
 		order.setEnding(ending);
 		order.setRoute(route);

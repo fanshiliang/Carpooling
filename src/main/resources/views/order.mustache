@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Rickie">
+    <link rel="icon" href="../../favicon.ico">
+    <title>
+      Sign in for carpooling
+    </title>
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/signin.css" rel="stylesheet">
+    <script src="../assets/js/bootstrap.js">
+    </script>
+  </head>
+  
+  <body>
+    <div class="container">
+    	<table class="table table-striped table-bordered">
+    		<caption>Order List</caption>
+    		<thead>
+    			<tr>
+			        <th>OrderNum</th>
+			        <th>Car Type</th>		                
+			        <th>Date</th>
+			        <th>Time</th>
+			        <th>Total Seats</th>
+			        <th>Available Seats</th>
+			        <th>Starting</th>
+			        <th>Ending</th>
+			        <th>Route</th>
+	    		</tr>
+    		</thead>
+	    	<tbody>
+		    {{#orderList}}
+		    	<tr>
+	  				<td>{{orderNum}}</td>
+	  				<td>{{carType}}</td>
+	  				<td>{{date}}</td>
+	  				<td>{{time}}</td>
+	  				<td>{{seatTotal}}</td>
+	  				<td>{{seatAvailable}}</td>
+	  				<td>{{starting}}</td>
+	  				<td>{{ending}}</td>
+	  				<td>{{route}}</td>
+	  			</tr>
+			{{/orderList}}
+			</tbody>
+		<table>
+    </div>
+  </body>
+
+</html>

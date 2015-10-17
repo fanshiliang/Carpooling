@@ -33,7 +33,7 @@ public interface MyDAO {
 	List<User> findAllUsers();
 
 	// insert temp_order
-	@SqlUpdate("insert into temp_order (:orderNum, :carType, :seatTotal, :seatAvailable, :date, :time, :starting, :ending, :route)")
+	@SqlUpdate("insert into temp_orders values (:orderNum, :carType, :seatTotal, :seatAvailable, :date, :time, :starting, :ending, :route)")
 	void insertTempOrder(@Bind("orderNum") int orderNum,
 			@Bind("carType") String carType, @Bind("seatTotal") int SeatToal,
 			@Bind("seatAvailable") int SeatAvailable, @Bind("date") Date date,
@@ -46,7 +46,7 @@ public interface MyDAO {
 	List<Order> findAllOders();
 	
 	// find order by orderNumber
-	@SqlQuery("SELECT * FROM temp_orders WHERE oderNum = :orderNum")
+	@SqlQuery("SELECT * FROM temp_orders WHERE orderNum = :orderNum")
 	@Mapper(OrderMapper.class)
 	Order findOrderById(@Bind("orderNum") int orderNum);
 
