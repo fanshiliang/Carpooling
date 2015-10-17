@@ -19,6 +19,9 @@ import com.courseExercise.carpooling.resources.PersonResource;
 import com.courseExercise.carpooling.resources.SignIn;
 import com.courseExercise.carpooling.resources.UserResource;
 import com.courseExercise.carpooling.resources.ViewResource;
+import com.courseExercise.carpooling.resources.iHaveACar;
+import com.courseExercise.carpooling.resources.tempCarPooling;
+import com.courseExercise.carpooling.resources.test;
 
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.Application;
@@ -103,6 +106,9 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
         environment.jersey().register(new UserResource(userDao,template));
 
         environment.jersey().register(new SignIn());
+        environment.jersey().register(new tempCarPooling());
+        environment.jersey().register(new iHaveACar());
+        environment.jersey().register(new test());
         environment.jersey().register(new HomeResource(null));
     }
 }
