@@ -41,7 +41,7 @@ public interface MyDAO {
 			@Bind("ending") String string, @Bind("route") String route);
 
 	// find all available orders
-	@SqlQuery("SELECT * FROM temp_orders WHERE (date > curdate() or (date = curdate() and time > curtime())) and seatAvailable < seatTotal")
+	@SqlQuery("SELECT * FROM temp_orders WHERE (date > curdate() or (date = curdate() and time > curtime())) and seatAvailable > 0")
 	@Mapper(OrderMapper.class)
 	List<Order> findAllOders();
 	
