@@ -13,11 +13,13 @@
     </title>
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
   </head>
-  <style>
+   <style>
     .service-block{margin-top: 60px;}
+	.banner-under-nav{text-align: center;}
   </style>
-  
   <body>
+
+    <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -84,12 +86,30 @@
                 </li>
               </ul>
             </li>
+			<li>
+                  <a href="#">
+                    {{user}}
+                  </a>
+                </li>
           </ul>
         </div>
       </div>
     </nav>
+
     <div class="service-block">
       <div class="container">
+		
+		  <div class="row">
+		  <div class="col-lg-12">
+		  <div class="banner-under-nav">
+		    <div class="jumbotron">
+		      <img class="img-rectangle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                alt="Generic placeholder image" width="95%" height="140">
+			</div>
+			</div>
+		  </div>
+		</div>
+		<hr>
         <div class="row">
           <div class="col-lg-6">
             <div class="jumbotron">
@@ -132,10 +152,26 @@
         </div>
       </div>
     </div>
-    <script src="../assets/js/jquery.min.js">
-    </script>
-    <script src="../assets/js/bootstrap.min.js">
-    </script>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">This is the footer of the page</p>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="../dist/js/jquery.min.js"></script>
+    <script src="../dist/js/bootstrap.min.js"></script>
+	
+	<!-- data required : 
+	  {{user}}
+	  link: longterm carpooling -- start
+	  link: temperory carpooling -- start
+	-->
+
   </body>
 
 </html>
