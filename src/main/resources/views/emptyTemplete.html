@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -6,18 +7,18 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- <link rel="icon" href="../../favicon.ico"> -->
-	
+    <link rel="icon" href="../../favicon.ico">
+
     <title>Navigation</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    
+	<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet">
 	<link href="../assets/css/jquery.dataTables.min.css" rel="stylesheet">
-	
+
     <!-- Custom styles for this template -->
-    <link href="sticky-footer-navbar.css" rel="stylesheet">
-	
+    <link href="../assets/css/sticky-footer-navbar.css" rel="stylesheet">
 
   </head>
   <style>
@@ -105,32 +106,8 @@
 
     <div class="service-block">
       <div class="container">
-		<div>
-		  <button id="test" class="btn btn-sm btn-primary" type="submit">
-            test
-          </button>
-		</div>
-		<div>
-		  <table id="orders" class="display" width="100%">
-		    <thead>
-            <tr>
-                <th>orderNum</th>
-                <th>carType</th>
-                <th>seatTotal</th>
-                <th>seatAvailable</th>
-                <th>date</th>
-                <th>time</th>
-				<th>route</th>
-				<th>starting</th>
-                <th>ending</th>
-            </tr>
-        </thead>
- 
-		  
-		  </table>
-		  
-		</div>
-
+		<!-- Content you want to add-->
+		
       </div>
     </div>
 
@@ -144,83 +121,11 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-	
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/jquery.dataTables.min.js"></script>
 	<script src="../assets/js/dataTables.bootstrap.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
 	
-	
-	<script>
-	$(document).ready(function() {
-		// initiate dataTables 
-		$('#orders').DataTable();
-		
-		// onclick, ajax to get table in JSON 
-		$('#test').click(function getTable(){
-			console.info("before ajax");
-			$.ajax({
-				url: 'http://192.168.31.113:12306/order/all',
-				type: 'GET',
-				dataType: 'JSON',
-				success: function(data){
-					console.info("ajax succeeded");
-					console.info(data);
-					
-					// transform json to 2D array 
-					var dataSrc = jsonToArray(data);
-					$('#orders').DataTable({
-
-						// destroy the table to refresh
-						destroy: true,
-						
-						// bind the table data with the array
-						data: dataSrc,
-						
-						// define the columns
-						columns: [
-							{ title: "orderNum" },
-							{ title: "carType" },
-							{ title: "seatTotal" },
-							{ title: "seatAvailable" },
-							{ title: "date" },
-							{ title: "time" },
-							{ title: "route" },
-							{ title: "starting" },
-							{ title: "ending" }
-						]
-					});
-					console.info("table loaded");
-					
-				}
-			});
-		});
-	} );
-	</script>
-	<script>
-		//transform json to 2D array 
-		function jsonToArray(dataSet){
-			var json = eval(dataSet)
-			var dataSrc = new Array();
-			$.each(json,function(index,item){
-				var orderNum = json[index].orderNum;
-				var carType = json[index].carType;
-				var seatTotal = json[index].seatTotal;
-				var seatAvailable = json[index].seatAvailable;
-				var date = json[index].date;
-				var time = json[index].time;
-				var route = json[index].route;
-				var starting = json[index].starting;
-				var ending = json[index].ending;
-				var ordertable = new Array(orderNum,carType,seatTotal,seatAvailable,date,time,route,starting,ending);
-				dataSrc[index]=ordertable;
-			});
-			return dataSrc;
-		}
-	</script>
-	<script>
-	
-	</script>
 	<!-- data required : 
 	  {{user}}
 	  link: longterm carpooling -- start
