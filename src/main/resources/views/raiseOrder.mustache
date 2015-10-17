@@ -28,6 +28,12 @@
         required autofocus>
         <input type="date" id="inputPassword" class="form-control" name="date" placeholder="Date"
         required>
+		<div class = "input-group">
+         <input type = "text" id = "hour" class = "form-control" name="hour" placeholder="时">
+         <span class = "input-group-addon">:</span>
+		 <input type = "text" id = "minute" class = "form-control" name="minute" placeholder="分">
+		 <input type = "text" class = "form-control" name="time" style="display:none;">
+		</div>
         <input type="text" class="form-control" name="totalSeats" placeholder="总座位数">
         <input type="text" class="form-control" name="availableSeats" placeholder="剩余座位">
         <input type="text" class="form-control" name="starting" placeholder="起点">
@@ -44,6 +50,20 @@
         </button>
       </form>
     </div>
+	
+	<script>
+		$(funtion(){
+			$('#hour').blur(function(){
+				$('#time').attr("value",$('#hour').val()+":"+$('#minute').val()+":00");
+			})
+			$('minute').blur(function(){
+				$('#time').attr("value",$('#hour').val()+":"+$('#minute').val()+":00");
+			})
+		
+		})
+		
+	</script>
+	
   </body>
 
 </html>
