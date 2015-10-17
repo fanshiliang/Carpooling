@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Allen">
+    <link rel="icon" href="../../favicon.ico">
+    <title>
+      I Have A Car
+    </title>
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link href="../assets/css/signin.css" rel="stylesheet">
+    <script type="text/javascript" src="../assets/js/jquery-1.8.3.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">CarPooling System</a>
+      </div>
+      <div>
+        <ul class="nav navbar-nav">
+          <li><a href="#">Hello,User</a></li>
+          <li class="active"><a href="#">Account Setting</a></li>
+        </ul>
+      </div>
+    </nav>
+    
+  	<div class="container">
+      <form class="form-horizontal"  action="signin" method="post">
+        <h2 class="form-signin-heading">
+          Please Publish Your CarPooling Message
+        </h2>
+        
+        <div class="form-group">
+          <label class="col-sm-2 control-label">CarType</label>
+          <div class="col-sm-10">
+            <input type="text" id="inputcarType" class="form-control" name="carType" placeholder="CarType">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-sm-2 control-label">SeatTotal</label>
+          <div class="col-sm-10">
+            <input type="text" id="inputseatTotal" class="form-control" name="seaatTotal" placeholder="SeatTotal">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-sm-2 control-label">SeatAvailable</label>
+          <div class="col-sm-10">
+            <input type="text" id="inputseatAv" class="form-control" name="seaatAv" placeholder="SeatAvailable">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-md-2 control-label">Date</label>
+          <div class="input-group date form_date col-md-10" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+            <input class="form-control" size="16" type="text" value="" readonly>
+            <span class="input-group-addon">重置<span class="glyphicon glyphicon-remove"></span></span>
+		    <span class="input-group-addon">日期<span class="glyphicon glyphicon-calendar"></span></span>
+          </div>
+        </div>
+        <script type="text/javascript">  
+          $('.form_date').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+		    autoclose: 1,
+		    todayHighlight: 1,
+		    startView: 2,
+		    minView: 2,
+		    forceParse: 0
+          }); 
+        </script>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+          Sign in
+        </button>
+      </form>
+    </div>
+  </body>
