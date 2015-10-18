@@ -15,8 +15,8 @@ import com.courseExercise.carpooling.core.User;
 public interface MyDAO {
 
 	// insert user
-	@SqlUpdate("insert into user (id, password) values (:id, :password)")
-	void insertUser(@Bind("id") String id, @Bind("password") String password);
+	@SqlUpdate("insert into user values (:id, :username, :password, :age, :carOwner, :drivingYears, :gender, :cellphone)")
+	void insertUser(@Bind("id") String id, @Bind("username") String username, @Bind("password") String password, @Bind("age") String age, @Bind("carOwner") String carOwner, @Bind("drivingYears") String drivingYears, @Bind("gender") String gender, @Bind("cellphone") String cellphone);
 
 	// find user's password by id
 	@SqlQuery("select password from user where id = :id")
@@ -55,6 +55,10 @@ public interface MyDAO {
 	@Mapper(OrderMapper.class)
 	Order findOrderByEnding(@Bind("ending") String ending, @Bind("id") String id);
 	
+	// find available orders by ending
+	@SqlQuery("SELECT * FROM temp_orders t WHERE ( t.date > curdate() or (t.date = curdate() and t.time > curtime()) ) and seatAvailable > 0 and t.ending = :ending")
+	@Mapper(OrderMapper.class)
+	List<Order> findOrderByEndingNoID(@Bind("ending") String ending);
 
 	//join order
 	@SqlUpdate("insert into user_orders (id, orderNum) values (:id, :orderNum)")
@@ -68,9 +72,13 @@ public interface MyDAO {
 	@SqlUpdate("delete from user_orders where id = :id and orderNum = :orderNum")
 	void cancleOrder(@Bind("id") String id, @Bind("orderNum") int orderNum);
 	
+	//add available seats when user cancle an order
+	@SqlUpdate("update temp_orders set seatAvailable = seatAvailable - 1 where orderNum = :orderNum")
+	void addSeatsAvaible(@Bind("orderNum") int orderNum);
 	
 	//
 	@SqlQuery("select * from temp_orders where orderNum in (select orderNum from user_orders where id = :id)")
+	@Mapper(OrderMapper.class)
 	List<Order> findAllUserOrders(@Bind("id") String id);
 
 	// find max order number
