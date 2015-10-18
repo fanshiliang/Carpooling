@@ -9,40 +9,50 @@ public class User {
 
     private String password;
     
-    private int age;
+    private String userName;
     
-    private int drivingYears;
+    public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+	private String age;
+    
+    private String drivingYears;
     
     private String gender;
     
 	private String cellphone;
     
-    private int carOwner;
+    private String carOwner;
 
     public User() {
         // Jackson deserialization
     }
 
-    public User(String id, String password) {
+    public User(String id) {
         this.id = id;
-        this.password = password;
     }
     
     @JsonProperty
-    public int getAge() {
+    public String getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	
 	@JsonProperty
-	public int getDrivingYears() {
+	public String getDrivingYears() {
 		return drivingYears;
 	}
 
-	public void setDrivingYears(int drivingYears) {
+	public void setDrivingYears(String drivingYears) {
 		this.drivingYears = drivingYears;
 	}
 	
@@ -65,11 +75,11 @@ public class User {
 	}
 	
 	@JsonProperty
-	public int getCarOwner() {
+	public String getCarOwner() {
 		return carOwner;
 	}
 
-	public void setCarOwner(int carOwner) {
+	public void setCarOwner(String carOwner) {
 		this.carOwner = carOwner;
 	}
 

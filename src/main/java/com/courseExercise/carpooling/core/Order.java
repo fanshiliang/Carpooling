@@ -15,7 +15,25 @@ public class Order {
 	private String starting;
 	private String ending;
 	private String route;
+	private String[] routeList;
+	private int siteCount;
 	
+	public String[] getRouteList() {
+		return routeList;
+	}
+
+	public void setRouteList(String[] routeList) {
+		this.routeList = routeList;
+	}
+	
+	public int getSiteCount() {
+		return siteCount;
+	}
+
+	public void setSiteCount(int siteCount) {
+		this.siteCount = siteCount;
+	}
+
 	public Order(){
 		
 	}
@@ -93,9 +111,18 @@ public class Order {
 	public String getRoute() {
 		return route;
 	}
+	
 	public void setRoute(String route) {
 		this.route = route;
+		String[] routeList = route.split(";");
+		this.siteCount = routeList.length + 1;
+		String[] routeListAll = new String[this.siteCount];
+		for(int i = 0; i < routeList.length; i ++){
+			routeListAll[i] = routeList[i];
+		}
+		routeListAll[routeList.length] = this.starting;
+		this.routeList = routeListAll;
+		
 	}
-	
 	
 }
