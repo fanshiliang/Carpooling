@@ -35,55 +35,107 @@
     </nav>
     
   	<div class="container">
-      <form class="form-horizontal"  action="signin" method="post">
-        <h2 class="form-signin-heading">
-          Please Publish Your CarPooling Message
-        </h2>
+  	  <center>
+        <form class="form-horizontal"  action="signin" method="post" id="form1">
+          <h2 class="form-signin-heading">
+            Please Publish Your CarPooling Message
+          </h2>
         
-        <div class="form-group">
-          <label class="col-sm-2 control-label">CarType</label>
-          <div class="col-sm-10">
-            <input type="text" id="inputcarType" class="form-control" name="carType" placeholder="CarType">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">CarType</label>
+            <div class="col-sm-10">
+              <input type="text" id="inputcarType" class="form-control" name="carType" placeholder="CarType">
+            </div>
           </div>
-        </div>
         
-        <div class="form-group">
-          <label class="col-sm-2 control-label">SeatTotal</label>
-          <div class="col-sm-10">
-            <input type="text" id="inputseatTotal" class="form-control" name="seaatTotal" placeholder="SeatTotal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">SeatTotal</label>
+            <div class="col-sm-10">
+              <input type="text" id="inputseatTotal" class="form-control" name="seaatTotal" placeholder="SeatTotal">
+            </div>
           </div>
-        </div>
         
-        <div class="form-group">
-          <label class="col-sm-2 control-label">SeatAvailable</label>
-          <div class="col-sm-10">
-            <input type="text" id="inputseatAv" class="form-control" name="seaatAv" placeholder="SeatAvailable">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">SeatAvailable</label>
+            <div class="col-sm-10">
+              <input type="text" id="inputseatAv" class="form-control" name="seaatAv" placeholder="SeatAvailable">
+            </div>
           </div>
-        </div>
         
-        <div class="form-group">
-          <label class="col-md-2 control-label">Date</label>
-          <div class="input-group date form_date col-md-10" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-            <input class="form-control" size="16" type="text" value="" readonly>
-            <span class="input-group-addon">重置<span class="glyphicon glyphicon-remove"></span></span>
-		    <span class="input-group-addon">日期<span class="glyphicon glyphicon-calendar"></span></span>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Date</label>
+            <div class="input-group date form_date col-md-10" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+              <input class="form-control" size="16" type="text" value="" readonly>
+              <span class="input-group-addon">Reset<span class="glyphicon glyphicon-remove"></span></span>
+		      <span class="input-group-addon">Date<span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
           </div>
-        </div>
-        <script type="text/javascript">  
-          $('.form_date').datetimepicker({
-            language:  'en',
-            weekStart: 1,
-            todayBtn:  1,
-		    autoclose: 1,
-		    todayHighlight: 1,
-		    startView: 2,
-		    minView: 2,
-		    forceParse: 0
-          }); 
-        </script>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
-          Sign in
-        </button>
-      </form>
+        
+          <div class="form-group">
+            <label class="col-md-2 control-label">Time</label>
+            <div class="input-group date form_time col-md-10" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+              <input class="form-control" size="16" type="text" value="" readonly>
+              <span class="input-group-addon">Reset<span class="glyphicon glyphicon-remove"></span></span>
+		      <span class="input-group-addon">Time<span class="glyphicon glyphicon-time"></span></span>
+            </div>
+          </div>
+          <script type="text/javascript">  
+            $('.form_date').datetimepicker({
+              language:  'en',
+              weekStart: 1,
+              todayBtn:  1,
+		      autoclose: 1,
+		      todayHighlight: 1,
+		      startView: 2,
+		      minView: 2,
+		      forceParse: 0
+            }); 
+            $('.form_time').datetimepicker({
+              language:  'en',
+              weekStart: 1,
+              todayBtn:  1,
+		      autoclose: 1,
+		      todayHighlight: 1,
+		      startView: 1,
+		      minView: 0,
+		      maxView: 1,
+		      forceParse: 0
+            });
+          </script>
+        
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Route</label>
+            <div class="col-sm-10">
+              <input type="button" style="position: absolute;left:100px" value="Increase Station" onclick='addNewLine()'/>
+            </div>
+          </div>
+        
+          <form id="form2" ></form>
+          <script type="text/javascript">
+            function addNewLine()
+            {
+              var form = document.getElementById('form1');
+              var formTemp = document.createElement('form2');
+              form.appendChild(formTemp);
+              var select = document.createElement("select");
+              select.add(new Option("TJU(OLD)","1"));
+              select.add(new Option("TianTa","2"));
+              select.add(new Option("BaLiTai","3"));
+              select.add(new Option("QiLiTai","4"));
+              select.add(new Option("XinZhuang","5"));
+              var del = document.createElement('input');
+              del.type = 'button';
+              del.value = 'delete';
+              del.onclick = function(){form.removeChild(formTemp)};
+              formTemp.appendChild(select);
+              formTemp.appendChild(del);
+              formTemp.appendChild(document.createElement("br"));
+            }
+          </script>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">
+            Publish
+          </button>
+        </form>
+      </center>
     </div>
   </body>
