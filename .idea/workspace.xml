@@ -1,108 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7ec6af09-f7fd-45f6-9628-f6e35c7ee9c8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/recommendation/constant/ClassEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/recommendation/RelationHolder/DateRelationHolder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/recommendation/Util/DateUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/recommendation/ValueOperate/DateValueOperator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/recommendation/Test/Main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/recommendation/RelationHolder/StringRelationHolder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/recommendation/ValueOperate/StringValueOperator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/recommendation/Test/TestData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/recommendation/ValueOperate/ValueOperator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/recommendation/Util/ValueUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/carpooling.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/example.keystore" afterPath="$PROJECT_DIR$/example.keystore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/font/glyphicons-halflings-regular.eot" afterPath="$PROJECT_DIR$/src/main/resources/assets/font/glyphicons-halflings-regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/font/glyphicons-halflings-regular.ttf" afterPath="$PROJECT_DIR$/src/main/resources/assets/font/glyphicons-halflings-regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/font/glyphicons-halflings-regular.woff2" afterPath="$PROJECT_DIR$/src/main/resources/assets/font/glyphicons-halflings-regular.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/font/glyphicons-halflings-regular.woff" afterPath="$PROJECT_DIR$/src/main/resources/assets/font/glyphicons-halflings-regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/mustache/iso88591.mustache" afterPath="$PROJECT_DIR$/src/main/resources/views/mustache/iso88591.mustache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/auth/AuthService.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/auth/AuthService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/CarpoolingApplication.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/CarpoolingApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/CarpoolingConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/CarpoolingConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/filter/DateNotSpecifiedFilter.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/filter/DateNotSpecifiedFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/filter/DateRequired.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/filter/DateRequired.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/filter/DateRequiredFeature.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/filter/DateRequiredFeature.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/FilteredResource.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/FilteredResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/HelloWorldResource.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/HelloWorldResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/HomeResource.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/HomeResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/views/IHAC.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/views/IHAC.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercice/carpooling/api/LoginRequest.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercice/carpooling/api/LoginRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/views/LoginView.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/views/LoginView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/db/MyDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/db/MyDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/core/Order.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/core/Order.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/db/OrderMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/db/OrderMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/OrderResource.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/OrderResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/views/OrderView.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/views/OrderView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/PeopleResource.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/PeopleResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/core/Person.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/core/Person.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/db/PersonDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/db/PersonDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/PersonResource.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/PersonResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/views/PersonView.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/views/PersonView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/cli/RenderCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/cli/RenderCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercice/carpooling/api/Saying.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercice/carpooling/api/Saying.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/SignIn.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/SignIn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/views/TCP.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/views/TCP.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/views/TTEESSTT.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/views/TTEESSTT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/core/Template.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/core/Template.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/health/TemplateHealthCheck.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/health/TemplateHealthCheck.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/core/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/core/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercice/carpooling/api/UserAuthorization.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercice/carpooling/api/UserAuthorization.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/db/UserMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/db/UserMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/UserResource.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/UserResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/ViewResource.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/ViewResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/banner.txt" afterPath="$PROJECT_DIR$/src/main/resources/banner.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/js/bootstrap-datetimepicker.fr.js" afterPath="$PROJECT_DIR$/src/main/resources/assets/js/bootstrap-datetimepicker.fr.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/js/bootstrap-datetimepicker.js" afterPath="$PROJECT_DIR$/src/main/resources/assets/js/bootstrap-datetimepicker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap-datetimepicker.min.css" afterPath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap-datetimepicker.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap-theme.css.map" afterPath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap-theme.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap-theme.css" afterPath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap-theme.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap-theme.min.css" afterPath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap-theme.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/js/bootstrap-typeahead.js" afterPath="$PROJECT_DIR$/src/main/resources/assets/js/bootstrap-typeahead.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap.css.map" afterPath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap.css" afterPath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/js/bootstrap.js" afterPath="$PROJECT_DIR$/src/main/resources/assets/js/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/src/main/resources/assets/css/bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/src/main/resources/assets/js/bootstrap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/css/dataTables.bootstrap.min.css" afterPath="$PROJECT_DIR$/src/main/resources/assets/css/dataTables.bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/js/dataTables.bootstrap.min.js" afterPath="$PROJECT_DIR$/src/main/resources/assets/js/dataTables.bootstrap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/emptyTemplete.html" afterPath="$PROJECT_DIR$/src/main/resources/views/emptyTemplete.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/example.txt" afterPath="$PROJECT_DIR$/src/main/resources/assets/example.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/example.yml" afterPath="$PROJECT_DIR$/example.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/font/glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/src/main/resources/assets/font/glyphicons-halflings-regular.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/iHaveACar.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/iHaveACar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/iHaveACar.mustache" afterPath="$PROJECT_DIR$/src/main/resources/views/iHaveACar.mustache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/ftl/iso88591.ftl" afterPath="$PROJECT_DIR$/src/main/resources/views/ftl/iso88591.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/js/jquery-1.8.3.min.js" afterPath="$PROJECT_DIR$/src/main/resources/assets/js/jquery-1.8.3.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/css/jquery.dataTables.min.css" afterPath="$PROJECT_DIR$/src/main/resources/assets/css/jquery.dataTables.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/js/jquery.dataTables.min.js" afterPath="$PROJECT_DIR$/src/main/resources/assets/js/jquery.dataTables.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/js/jquery.min.js" afterPath="$PROJECT_DIR$/src/main/resources/assets/js/jquery.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/migrations.xml" afterPath="$PROJECT_DIR$/src/main/resources/migrations.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/navigation.html" afterPath="$PROJECT_DIR$/src/main/resources/views/navigation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/navigation.mustache" afterPath="$PROJECT_DIR$/src/main/resources/views/navigation.mustache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/js/npm.js" afterPath="$PROJECT_DIR$/src/main/resources/assets/js/npm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/order.mustache" afterPath="$PROJECT_DIR$/src/main/resources/views/order.mustache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/example/helloworld/views/freemarker/person.ftl" afterPath="$PROJECT_DIR$/src/main/resources/com/example/helloworld/views/freemarker/person.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/example/helloworld/views/mustache/person.mustache" afterPath="$PROJECT_DIR$/src/main/resources/com/example/helloworld/views/mustache/person.mustache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/raiseOrder.mustache" afterPath="$PROJECT_DIR$/src/main/resources/views/raiseOrder.mustache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/register.html" afterPath="$PROJECT_DIR$/src/main/resources/views/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/css/signin.css" afterPath="$PROJECT_DIR$/src/main/resources/assets/css/signin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/signin.mustache" afterPath="$PROJECT_DIR$/src/main/resources/views/signin.mustache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/assets/css/sticky-footer-navbar.css" afterPath="$PROJECT_DIR$/src/main/resources/assets/css/sticky-footer-navbar.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/tempCarPooling.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/tempCarPooling.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/tempCarPooling.mustache" afterPath="$PROJECT_DIR$/src/main/resources/views/tempCarPooling.mustache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/templet.html" afterPath="$PROJECT_DIR$/src/main/resources/views/templet.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/test.java" afterPath="$PROJECT_DIR$/src/main/java/com/courseExercise/carpooling/resources/test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/test.mustache" afterPath="$PROJECT_DIR$/src/main/resources/views/test.mustache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/ftl/utf8.ftl" afterPath="$PROJECT_DIR$/src/main/resources/views/ftl/utf8.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/views/mustache/utf8.mustache" afterPath="$PROJECT_DIR$/src/main/resources/views/mustache/utf8.mustache" />
-    </list>
+    <list default="true" id="7ec6af09-f7fd-45f6-9628-f6e35c7ee9c8" name="Default" comment="" />
     <ignored path="dropwizard-example.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -166,10 +65,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/recommendation/Test/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.64935064">
+            <state vertical-scroll-proportion="0.0">
               <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -178,22 +77,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestData.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestData.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/recommendation/Test/TestData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.6883117">
               <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
               <folding>
-                <element signature="e#217#218#0" expanded="true" />
-                <element signature="e#242#243#0" expanded="true" />
-                <element signature="e#279#280#0" expanded="true" />
-                <element signature="e#307#308#0" expanded="true" />
-                <element signature="e#338#339#0" expanded="true" />
-                <element signature="e#365#366#0" expanded="true" />
-                <element signature="e#405#406#0" expanded="true" />
-                <element signature="e#437#438#0" expanded="true" />
-                <element signature="e#466#467#0" expanded="true" />
-                <element signature="e#493#494#0" expanded="true" />
                 <element signature="e#531#532#0" expanded="true" />
                 <element signature="e#563#564#0" expanded="true" />
               </folding>
@@ -1113,12 +1002,12 @@
       <workItem from="1445389783818" duration="1313000" />
       <workItem from="1445392811967" duration="602000" />
       <workItem from="1445435335831" duration="8979000" />
-      <workItem from="1445521205138" duration="2379000" />
+      <workItem from="1445521205138" duration="2568000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13967000" />
+    <option name="totallyTimeSpent" value="14156000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="0" />
@@ -1470,27 +1359,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/recommendation/Test/TestData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-          <folding>
-            <element signature="e#217#218#0" expanded="true" />
-            <element signature="e#242#243#0" expanded="true" />
-            <element signature="e#279#280#0" expanded="true" />
-            <element signature="e#307#308#0" expanded="true" />
-            <element signature="e#338#339#0" expanded="true" />
-            <element signature="e#365#366#0" expanded="true" />
-            <element signature="e#405#406#0" expanded="true" />
-            <element signature="e#437#438#0" expanded="true" />
-            <element signature="e#466#467#0" expanded="true" />
-            <element signature="e#493#494#0" expanded="true" />
-            <element signature="e#531#532#0" expanded="true" />
-            <element signature="e#563#564#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/recommendation/ValueOperate/ValueOperator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1525,16 +1393,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/recommendation/RelationHolder/StringRelationHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1579,12 +1437,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/recommendation/RelationHolder/StringRelationHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/recommendation/Test/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64935064">
+        <state vertical-scroll-proportion="0.0">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/recommendation/Test/TestData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6883117">
+          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+          <folding>
+            <element signature="e#531#532#0" expanded="true" />
+            <element signature="e#563#564#0" expanded="true" />
           </folding>
         </state>
       </provider>
