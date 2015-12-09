@@ -1,28 +1,11 @@
 
 package com.courseExercise.carpooling;
-
-import io.dropwizard.auth.AuthValueFactoryProvider;
-
+import com.courseExercise.carpooling.core.*;
+import com.courseExercise.carpooling.db.*;
+import com.courseExercise.carpooling.resources.*;
 import com.courseExercise.carpooling.cli.RenderCommand;
-import com.courseExercise.carpooling.core.Person;
-import com.courseExercise.carpooling.core.Template;
-import com.courseExercise.carpooling.core.User;
-import com.courseExercise.carpooling.db.MyDAO;
-import com.courseExercise.carpooling.db.PersonDAO;
 import com.courseExercise.carpooling.filter.DateRequiredFeature;
 import com.courseExercise.carpooling.health.TemplateHealthCheck;
-import com.courseExercise.carpooling.resources.FilteredResource;
-import com.courseExercise.carpooling.resources.HelloWorldResource;
-import com.courseExercise.carpooling.resources.HomeResource;
-import com.courseExercise.carpooling.resources.OrderResource;
-import com.courseExercise.carpooling.resources.PeopleResource;
-import com.courseExercise.carpooling.resources.PersonResource;
-import com.courseExercise.carpooling.resources.SignIn;
-import com.courseExercise.carpooling.resources.UserResource;
-import com.courseExercise.carpooling.resources.ViewResource;
-import com.courseExercise.carpooling.resources.iHaveACar;
-import com.courseExercise.carpooling.resources.tempCarPooling;
-import com.courseExercise.carpooling.resources.test;
 
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.Application;
@@ -110,9 +93,7 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
         environment.jersey().register(new OrderResource(myDAO));
 
         environment.jersey().register(new SignIn());
-        environment.jersey().register(new tempCarPooling());
-        environment.jersey().register(new iHaveACar());
-        environment.jersey().register(new test());
+        environment.jersey().register(new TempCarPooling());
         environment.jersey().register(new HomeResource(null));
     }
 }

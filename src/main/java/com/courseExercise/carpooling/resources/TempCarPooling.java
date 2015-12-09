@@ -7,8 +7,8 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/tempCarPooling")
 @Produces(MediaType.TEXT_HTML)
-public class tempCarPooling {
-	public tempCarPooling(){
+public class TempCarPooling {
+	public TempCarPooling(){
 		
 	}
 	
