@@ -1,34 +1,32 @@
 package com.courseExercise.carpooling.resources;
 
 import io.dropwizard.views.View;
-
-import com.courseExercise.carpooling.views.RaiseOrder;
-import com.courseExercise.carpooling.views.TCP;
+import com.google.common.base.Charsets;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("/tempCarPooling")
-
 public class TempCarPooling {
-	public TempCarPooling(){
-		
+	public TempCarPooling() {
+
 	}
-	
-	@Path("/")
+
 	@Produces(MediaType.TEXT_HTML)
 	@GET
-	public TCP loginTest()
-	{
-		return new TCP();
+	public View getTempIndexView() {
+		return new View("/views/tempCarpooling/tempCarPooling.mustache", Charsets.UTF_8) {
+		};
 	}
-	
+
+	@GET
+	@Produces(MediaType.TEXT_HTML)
 	@Path("/raise")
-	@Produces(MediaType.TEXT_HTML)
-	@GET
-	public RaiseOrder raiseOrder()
-	{
-		return new RaiseOrder();
+	public View getRaiseOrderView() {
+		return new View("/views/tempCarpooling/raiseTempOrder.mustache", Charsets.UTF_8) {
+		};
 	}
+	
+	
 	
 }
