@@ -7,8 +7,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("/tempCarPooling")
-public class TempCarPooling {
-	public TempCarPooling() {
+public class TempCarPoolingResource {
+	public TempCarPoolingResource() {
 
 	}
 

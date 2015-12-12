@@ -93,7 +93,7 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
         environment.jersey().register(new OrderResource(myDAO));
 
         environment.jersey().register(new SignIn());
-        environment.jersey().register(new TempCarPooling());
+        environment.jersey().register(new TempCarPoolingResource());
         environment.jersey().register(new HomeResource(null));
     }
 }
