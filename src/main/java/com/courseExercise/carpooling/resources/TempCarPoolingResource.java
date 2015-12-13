@@ -6,7 +6,7 @@ import com.google.common.base.Charsets;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@Path("/tempCarPooling")
+@Path("/tempCarpooling")
 public class TempCarPoolingResource {
 	public TempCarPoolingResource() {
 
@@ -26,6 +26,16 @@ public class TempCarPoolingResource {
 		return new View("/views/tempCarpooling/raiseTempOrder.mustache", Charsets.UTF_8) {
 		};
 	}
+	
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	@Path("/orders")
+	public View getAllOrdersView() {
+		return new View("/views/tempCarpooling/tempOrders.mustache", Charsets.UTF_8) {
+		};
+	}
+	
+	
 	
 	
 	

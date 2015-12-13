@@ -106,35 +106,14 @@
     <div class="service-block">
       <div class="container">
       <center>
-        <form class="form-signin"  action="http://127.0.0.1:12306/order/raiseOrder" method="post" id="form1">
-          <h2 class="form-signin-heading">
-            CarPooling Message
-          </h2>
-          <input type="text" id="inputcarType" class="form-control" name="carType" placeholder="CarType" required>
-          <input type="text" id="inputseatTotal" class="form-control" name="totalSeats" placeholder="SeatTotal" required>
-          <input type="text" id="inputseatAv" class="form-control" name="availableSeats" placeholder="SeatAvailable" required>
-          <input type="date" id="inputPassword" class="form-control" name="date" placeholder="Date" required>
-          <div class = "input-group">
-            <input type = "text" id = "hour" class = "form-control" name="hour" placeholder="时">
-            <span class = "input-group-addon">:</span>
-		    <input type = "text" id = "minute" class = "form-control" name="minute" placeholder="分">
-		    <input type = "text" id= "time" class = "form-control" name="time" style="display:none;">
-		  </div>
-          <input type="text" class="form-control" name="starting" placeholder="Starting" required>
-          <input type="button"  class="btn btn-lg btn-primary btn-block" value="Increase Station" onclick='addNewLine()'/>
-            
-          
-          <div class="input-group" id="div1">
-            <input type="text" class="form-control" name="route" id="route" style="display:none;">
-          </div>
-         
-          <input type="text" class="form-control" name="ending" placeholder="Ending" required>
-          <button class="btn btn-lg btn-primary btn-block" type="submit" id="raise">
-            Publish
-          </button>
-          
-        </form>
-      </center>
+		<h2 class="form-signin-heading">
+  	    Choose a function!
+  	  </h2>
+  	  <p>
+  	    <a href="/tempCarpooling/raise" ><button type="button" class="btn btn-primary btn-lg">I have a car</button></a>
+  	    <a href="/tempCarpooling/orders" ><button type="button" class="btn btn-primary btn-lg">I want a CAR</button></a>
+  	  </p>
+  	  </center>
       </div>
     </div>
 
@@ -153,40 +132,6 @@
 	<script src="../../assets/js/jquery.dataTables.min.js"></script>
 	<script src="../../assets/js/dataTables.bootstrap.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-            var num = 0;
-            function addNewLine()
-            {
-              var form = document.getElementById('div1');
-              var br = document.createElement("br");
-              var select = document.createElement("select");
-              select.name=num;
-              select.id=num;
-              select.add(new Option("TJU(OLD)","TJU(OLD)"));
-              select.add(new Option("TianTa","TianTa"));
-              select.add(new Option("BaLiTai","BaLiTai"));
-              select.add(new Option("QiLiTai","QiLiTai"));
-              select.add(new Option("XinZhuang","XinZhuang"));
-              var del = document.createElement('input');
-              del.type = 'button';
-              del.value = 'delete';
-              del.onclick = function(){form.removeChild(select);
-              						   form.removeChild(del);
-              						   form.removeChild(br);
-              						   num--;};
-              form.appendChild(select);
-              form.appendChild(del);
-              form.appendChild(br);
-              num++;
-            }
-		    $(document).ready(function() {
-              $('#raise').click(function combineHour(){
-			    $('#time').attr("value",$('#hour').val()+":"+$('#minute').val()+":00");
-			    for(var i=0;i<num;i++){
-			      $('#route').attr("value",$('#route').val()+$("#"+i).val()+";");
-			    }
-			  })
-		    });
-	 </script>
+
   </body>
 </html>
