@@ -36,78 +36,67 @@
     
   	<div class="container">
   	  <center>
-        <form class="form-signin"  action="signin" method="post" id="form1">
+        <form class="form-signin"  action="http://127.0.0.1:12306/order/raiseOrder" method="post" id="form1">
           <h2 class="form-signin-heading">
             CarPooling Message
           </h2>
           <input type="text" id="inputcarType" class="form-control" name="carType" placeholder="CarType" required>
-          <input type="text" id="inputseatTotal" class="form-control" name="seaatTotal" placeholder="SeatTotal" required>
-          <input type="text" id="inputseatAv" class="form-control" name="seaatAv" placeholder="SeatAvailable" required>
-          <div class="input-group date form_date col-md-15" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-            <input class="form-control" size="16" type="text" value="" placeholder="Date" readonly>
-            <span class="input-group-addon">Reset<span class="glyphicon glyphicon-remove"></span></span>
-		    <span class="input-group-addon">Date<span class="glyphicon glyphicon-calendar"></span></span>
-          </div>
-          <div class="input-group date form_time col-md-15" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-            <input class="form-control" size="16" type="text" value="" placeholder="Time" readonly>
-            <span class="input-group-addon">Reset<span class="glyphicon glyphicon-remove"></span></span>
-		    <span class="input-group-addon">Time<span class="glyphicon glyphicon-time"></span></span>
-          </div>
-          <script type="text/javascript">  
-            $('.form_date').datetimepicker({
-              language:  'en',
-              weekStart: 1,
-              todayBtn:  1,
-		      autoclose: 1,
-		      todayHighlight: 1,
-		      startView: 2,
-		      minView: 2,
-		      forceParse: 0
-            }); 
-            $('.form_time').datetimepicker({
-              language:  'en',
-              weekStart: 1,
-              todayBtn:  1,
-		      autoclose: 1,
-		      todayHighlight: 1,
-		      startView: 1,
-		      minView: 0,
-		      maxView: 1,
-		      forceParse: 0
-            });
-          </script>
+          <input type="text" id="inputseatTotal" class="form-control" name="totalSeats" placeholder="SeatTotal" required>
+          <input type="text" id="inputseatAv" class="form-control" name="availableSeats" placeholder="SeatAvailable" required>
+          <input type="date" id="inputPassword" class="form-control" name="date" placeholder="Date" required>
+          <div class = "input-group">
+            <input type = "text" id = "hour" class = "form-control" name="hour" placeholder="时">
+            <span class = "input-group-addon">:</span>
+		    <input type = "text" id = "minute" class = "form-control" name="minute" placeholder="分">
+		    <input type = "text" id= "time" class = "form-control" name="time" style="display:none;">
+		  </div>
           <input type="text" class="form-control" name="starting" placeholder="Starting" required>
           <input type="button"  class="btn btn-lg btn-primary btn-block" value="Increase Station" onclick='addNewLine()'/>
             
           
-          <div class="input-group" id="div1"></div>
+          <div class="input-group" id="div1">
+            <input type="text" class="form-control" name="route" id="route" style="display:none;">
+          </div>
+         
+          <input type="text" class="form-control" name="ending" placeholder="Ending" required>
+          <button class="btn btn-lg btn-primary btn-block" type="submit" id="raise">
+            Publish
+          </button>
           <script type="text/javascript">
+            var num = 0;
             function addNewLine()
             {
               var form = document.getElementById('div1');
               var br = document.createElement("br");
               var select = document.createElement("select");
-              select.add(new Option("TJU(OLD)","1"));
-              select.add(new Option("TianTa","2"));
-              select.add(new Option("BaLiTai","3"));
-              select.add(new Option("QiLiTai","4"));
-              select.add(new Option("XinZhuang","5"));
+              select.name=num;
+              select.id=num;
+              select.add(new Option("TJU(OLD)","TJU(OLD)"));
+              select.add(new Option("TianTa","TianTa"));
+              select.add(new Option("BaLiTai","BaLiTai"));
+              select.add(new Option("QiLiTai","QiLiTai"));
+              select.add(new Option("XinZhuang","XinZhuang"));
               var del = document.createElement('input');
               del.type = 'button';
               del.value = 'delete';
               del.onclick = function(){form.removeChild(select);
               						   form.removeChild(del);
-              						   form.removeChild(br)};
+              						   form.removeChild(br);
+              						   num--;};
               form.appendChild(select);
               form.appendChild(del);
               form.appendChild(br);
+              num++;
             }
-          </script>
-          
-          <input type="text" class="form-control" name="ending" placeholder="Ending" required>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">
-            Publish
-          </button>
+		    $(document).ready(function() {
+              $('#raise').click(function combineHour(){
+			    $('#time').attr("value",$('#hour').val()+":"+$('#minute').val()+":00");
+			    for(var i=0;i<num;i++){
+			      $('#route').attr("value",$('#route').val()+$("#"+i).val()+",");
+			    }
+			  })
+		    });
+	      </script>
         </form>
       </center>
     </div>
