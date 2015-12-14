@@ -8,12 +8,12 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="../../favicon.ico"> -->
 	
-    <title>Navigation</title>
+    <title>Carpooling</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet">
-	<link href="../assets/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../assets/css/dataTables.bootstrap.min.css" rel="stylesheet">
+	<link href="../../assets/css/jquery.dataTables.min.css" rel="stylesheet">
 	
     <!-- Custom styles for this template -->
     <link href="sticky-footer-navbar.css" rel="stylesheet">
@@ -42,20 +42,20 @@
             <span class="icon-bar">
             </span>
           </button>
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/navigation">
             Carpooling
           </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active">
-              <a href="#">
+              <a href="/tempCarpooling">
                 Home
               </a>
             </li>
             <li>
-              <a href="#about">
-                About
+              <a href="/tempCarpooling/myOrders">
+                	我的拼车
               </a>
             </li>
             <li>
@@ -106,11 +106,6 @@
     <div class="service-block">
       <div class="container">
 		<div>
-		  <button id="test" class="btn btn-sm btn-primary" type="submit">
-            test
-          </button>
-		</div>
-		<div>
 		  <table id="orders" class="display" width="100%">
 		    <thead>
             <tr>
@@ -123,6 +118,7 @@
 				<th>route</th>
 				<th>starting</th>
                 <th>ending</th>
+                <th></th>
             </tr>
         </thead>
  
@@ -145,32 +141,24 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 	
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/jquery.dataTables.min.js"></script>
-	<script src="../assets/js/dataTables.bootstrap.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/jquery.dataTables.min.js"></script>
+	<script src="../../assets/js/dataTables.bootstrap.min.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
 	
 	
 	<script>
 	$(document).ready(function() {
 		// initiate dataTables 
 		$('#orders').DataTable();
-		
-		// onclick, ajax to get table in JSON 
-		$('#test').click(function getTable(){
 			console.info("before ajax");
 			$.ajax({
 				url: 'http://127.0.0.1:12306/order/all',
 				type: 'GET',
-				dataType: 'JSON',
+				dataType : "json", 
 				success: function(data){
-					console.info("ajax succeeded");
-					console.info(data);
-					
-					// transform json to 2D array 
 					var dataSrc = jsonToArray(data);
 					$('#orders').DataTable({
-
 						// destroy the table to refresh
 						destroy: true,
 						
@@ -187,14 +175,14 @@
 							{ title: "time" },
 							{ title: "route" },
 							{ title: "starting" },
-							{ title: "ending" }
+							{ title: "ending" },
+							{ "data": null,defaultContent: '<input type="button" onclick="" value="Join" />', orderable: false }, 
 						]
 					});
-					console.info("table loaded");
 					
 				}
 			});
-		});
+
 	} );
 	</script>
 	<script>

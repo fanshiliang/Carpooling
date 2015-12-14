@@ -114,7 +114,7 @@ public class Order {
 	
 	public void setRoute(String route) {
 		this.route = route;
-		String[] routeList = route.split(";");
+		String[] routeList = route.split(",");
 		this.siteCount = routeList.length + 1;
 		String[] routeListAll = new String[this.siteCount];
 		for(int i = 0; i < routeList.length; i ++){
