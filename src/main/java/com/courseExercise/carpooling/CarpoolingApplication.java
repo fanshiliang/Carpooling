@@ -88,8 +88,6 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
     	
     	configureCors(environment);
     	
-        final PersonDAO dao = new PersonDAO(hibernateBundle.getSessionFactory());
-
         final Template template = configuration.buildTemplate();
         environment.healthChecks().register("template", new TemplateHealthCheck(template));
         environment.jersey().register(DateRequiredFeature.class);

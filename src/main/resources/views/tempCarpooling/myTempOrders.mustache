@@ -18,6 +18,19 @@
     <!-- Custom styles for this template -->
     <link href="sticky-footer-navbar.css" rel="stylesheet">
 	
+	<style type="text/css">
+	
+	ul.nav-pills{
+		width: 200px;
+	}
+    ul.nav-pills.affix{
+        top: 30px; /* Set the top position of pinned element */
+    }
+	#lists ul li{
+		padding: 5px;
+	}
+	</style>
+	
 
   </head>
   <style>
@@ -105,16 +118,36 @@
 
     <div class="service-block">
       <div class="container">
-      <center>
-		<h2 class="form-signin-heading">
-  	    Choose a function!
-  	  </h2>
-  	  <p>
-  	    <a href="/tempCarpooling/raise" ><button type="button" class="btn btn-primary btn-lg">I have a car</button></a>
-  	    <a href="/tempCarpooling/orders" ><button type="button" class="btn btn-primary btn-lg">I want a CAR</button></a>
-  	  </p>
-  	  </center>
-      </div>
+		<div class="row">
+		 <div class="col-xs-3" id="myScrollspy">
+            <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="125">
+                <li class="active"><a href="#html">111</a></li>
+                <li><a href="#php">111</a></li>
+                <li><a href="#dede">111</a></li>
+                <li><a href="#wordpress">111</a></li>
+                <li><a href="#more">111</a></li>
+            </ul>
+         </div>
+         <div class="col-xs-9" id="lists">
+		  <table id="orders" class="display">
+		    <thead>
+	            <tr>
+	                <th>orderNum</th>
+	                <th>carType</th>
+	                <th>seatTotal</th>
+	                <th>seatAvailable</th>
+	                <th>date</th>
+	                <th>time</th>
+					<th>route</th>
+					<th>starting</th>
+	                <th>ending</th>
+	                <th></th>
+	            </tr>
+	       		</thead>
+ 			</table>
+ 		 </div>
+		</div>
+	 </div>
     </div>
 
     <footer class="footer">
@@ -132,6 +165,77 @@
 	<script src="../../assets/js/jquery.dataTables.min.js"></script>
 	<script src="../../assets/js/dataTables.bootstrap.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
+	
+	
+	<script>
+	$(document).ready(function() {
+		// initiate dataTables 
+		$('#orders').DataTable();
+			console.info("before ajax");
+			$.ajax({
+				url: 'http://127.0.0.1:12306/order/myOrders/jingshihao',
+				type: 'GET',
+				dataType : "json", 
+				success: function(data){
+					var dataSrc = jsonToArray(data);
+					$('#orders').DataTable({
+						// destroy the table to refresh
+						destroy: true,
+						
+						// bind the table data with the array
+						data: dataSrc,
+						
+						// define the columns
+						columns: [
+							{ title: "orderNum" },
+							{ title: "carType" },
+							{ title: "seatTotal" },
+							{ title: "seatAvailable" },
+							{ title: "date" },
+							{ title: "time" },
+							{ title: "route" },
+							{ title: "starting" },
+							{ title: "ending" },
+							{ "data": null,defaultContent: '<input type="button" onclick="" value="Join" />', orderable: false }, 
+						]
+						
+									
+
+					});
+					
+				}
+			});
+
+	} );
+	</script>
+	<script>
+		//transform json to 2D array 
+		function jsonToArray(dataSet){
+			var json = eval(dataSet)
+			var dataSrc = new Array();
+			$.each(json,function(index,item){
+				var orderNum = json[index].orderNum;
+				var carType = json[index].carType;
+				var seatTotal = json[index].seatTotal;
+				var seatAvailable = json[index].seatAvailable;
+				var date = json[index].date;
+				var time = json[index].time;
+				var route = json[index].route;
+				var starting = json[index].starting;
+				var ending = json[index].ending;
+				var ordertable = new Array(orderNum,carType,seatTotal,seatAvailable,date,time,route,starting,ending);
+				dataSrc[index]=ordertable;
+			});
+			return dataSrc;
+		}
+	</script>
+	<script>
+	
+	</script>
+	<!-- data required : 
+	  {{user}}
+	  link: longterm carpooling -- start  
+	-->
 
   </body>
 </html>

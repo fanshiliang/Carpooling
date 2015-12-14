@@ -35,6 +35,13 @@ public class TempCarPoolingResource {
 		};
 	}
 	
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	@Path("/myOrders")
+	public View getMyOrdersView() {
+		return new View("/views/tempCarpooling/myTempOrders.mustache", Charsets.UTF_8) {
+		};
+	}
 	
 	
 	

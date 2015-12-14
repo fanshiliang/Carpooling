@@ -42,20 +42,20 @@
             <span class="icon-bar">
             </span>
           </button>
-          <a class="navbar-brand" href="/tempCarpooling">
+          <a class="navbar-brand" href="/navigation">
             Carpooling
           </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active">
-              <a href="#">
+              <a href="/tempCarpooling">
                 Home
               </a>
             </li>
             <li>
-              <a href="#about">
-                About
+              <a href="/tempCarpooling/myOrders">
+                	我的拼车
               </a>
             </li>
             <li>
@@ -118,6 +118,7 @@
 				<th>route</th>
 				<th>starting</th>
                 <th>ending</th>
+                <th></th>
             </tr>
         </thead>
  
@@ -174,7 +175,8 @@
 							{ title: "time" },
 							{ title: "route" },
 							{ title: "starting" },
-							{ title: "ending" }
+							{ title: "ending" },
+							{ "data": null,defaultContent: '<input type="button" onclick="" value="Join" />', orderable: false }, 
 						]
 					});
 					

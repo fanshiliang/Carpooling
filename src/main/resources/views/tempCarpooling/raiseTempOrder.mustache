@@ -42,20 +42,20 @@
             <span class="icon-bar">
             </span>
           </button>
-          <a class="navbar-brand" href="/tempCarpooling">
+          <a class="navbar-brand" href="/navigation">
             Carpooling
           </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active">
-              <a href="#">
+              <a href="/tempCarpooling">
                 Home
               </a>
             </li>
             <li>
-              <a href="#about">
-                About
+              <a href="/tempCarpooling/myOrders">
+                	我的拼车
               </a>
             </li>
             <li>
@@ -183,7 +183,7 @@
               $('#raise').click(function combineHour(){
 			    $('#time').attr("value",$('#hour').val()+":"+$('#minute').val()+":00");
 			    for(var i=0;i<num;i++){
-			      $('#route').attr("value",$('#route').val()+$("#"+i).val()+";");
+			      $('#route').attr("value",$('#route').val()+$("#"+i).val()+",");
 			    }
 			  })
 		    });
