@@ -12,15 +12,18 @@
       Sign in for carpooling
     </title>
     <!-- Bootstrap core CSS -->
+    <!-- access from http resolves to this -->
+
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/css/signin.css" rel="stylesheet">
-    <script src="../assets/js/bootstrap.js">
-    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>
+
   </head>
   
   <body>
     <div class="container">
-      <form class="form-signin"  action="signin" method="post">
+      <form class="form-signin" action="javascript:valid()" method="post">
         <h2 class="form-signin-heading">
           Please sign in
         </h2>
@@ -34,11 +37,35 @@
             Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
+        <button class="btn btn-lg btn-primary btn-block">
           Sign in
         </button>
       </form>
+
     </div>
   </body>
 
 </html>
+<script>
+function valid(){
+var username = document.getElementById("inputUsername").value;
+var password = document.getElementById("inputPassword").value
+
+$.ajax
+({
+  type: "POST",
+  contentType: "application/json; charset=utf-8",
+  url: "http://127.0.0.1:12306/valid",
+  dataType: 'json',
+  async: false,
+  headers: {
+    "Authorization": "Basic " + btoa(username + ":" + password)
+  },
+  data: '',
+  success: function (){
+    alert('Thanks for your comment!'); 
+  }
+});
+};
+
+</script>

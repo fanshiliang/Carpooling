@@ -15,13 +15,16 @@ public class OrderMapper implements ResultSetMapper<Order> {
 			throws SQLException {
 		Order order = new Order(r.getInt("orderNum"));
 		order.setCarType(r.getString("carType"));
+		order.setOrderType(r.getString("orderType"));
 		order.setSeatTotal(r.getInt("seatTotal"));
 		order.setSeatAvailable(r.getInt("seatAvailable"));
-		order.setDate(r.getDate("date"));
+		order.setStartDate(r.getDate("startDate"));
+		order.setEndDate(r.getDate("endDate"));
 		order.setTime(r.getTime("time"));
 		order.setStarting(r.getString("starting"));
 		order.setEnding(r.getString("ending"));
 		order.setRoute(r.getString("route"));
+		order.setStatus(r.getString("status"));
 		return order;
 	}
 
