@@ -9,7 +9,7 @@
 	<artifactId>Carpooling</artifactId>
 	<version>1.0</version>
 	<groupId>io.dropwizard</groupId>
-	<name>Dropwizard Example Application</name>
+	<name>courseExercise</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

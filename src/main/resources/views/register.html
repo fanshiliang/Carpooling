@@ -9,31 +9,50 @@
     <meta name="author" content="Rickie">
     <link rel="icon" href="../../favicon.ico">
     <title>
-      Register for carpooling
+      Sign in for carpooling
     </title>
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/css/signin.css" rel="stylesheet">
-    <script src="../assets/js/bootstrap.js">
-    </script>
+	
   </head>
   
   <body>
     <div class="container">
-      <form class="form-signin"  action="register" method="post">
+      <form class="form-signin"  action="http://127.0.0.1:12306/user/register" method="post">
         <h2 class="form-signin-heading">
-          Register New User
-        </h2>
-        <input type="text" id="inputUsername" class="form-control" name="username" placeholder="Username"
-        required autofocus>
-        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password"
-        required>
-        
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
           Register
+        </h2>
+        <input type="text" id="inputId" class="form-control" name="id" placeholder="用户名"
+        required autofocus>
+        <input type="text" id="inputUsername" class="form-control" name="username" placeholder="昵称"
+        required>
+        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="密码"
+        required>
+        <p>是否有车？</p>
+        <input type="radio" name="carOwner" value="1" /> Yes
+		<input type="radio" name="carOwner" value="0" /> No
+		<input type="text" class="form-control" name="drivingYears" placeholder="驾龄">
+		<p>性别</p>
+        <input type="radio" name="gender" value="male" /> Male
+		<input type="radio" name="gender" value="female" /> Female
+		<input type="text" class="form-control" name="age" placeholder="年龄">
+        <input type="text" class="form-control" name="cellphone" placeholder="电话">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me">
+            Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="raise">
+          Raise
         </button>
       </form>
     </div>
+	
+	<script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>
+	
   </body>
 
 </html>

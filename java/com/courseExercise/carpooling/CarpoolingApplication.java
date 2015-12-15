@@ -11,12 +11,10 @@ import com.courseExercise.carpooling.auth.AuthService;
 import com.courseExercise.carpooling.auth.CookieAuthenticator;
 import com.courseExercise.carpooling.auth.SimpleAuthenticator;
 import com.courseExercise.carpooling.auth.SimpleAuthorizer;
+import com.courseExercise.carpooling.core.*;
+import com.courseExercise.carpooling.db.*;
+import com.courseExercise.carpooling.resources.*;
 import com.courseExercise.carpooling.cli.RenderCommand;
-import com.courseExercise.carpooling.core.Person;
-import com.courseExercise.carpooling.core.Template;
-import com.courseExercise.carpooling.core.User;
-import com.courseExercise.carpooling.db.PersonDAO;
-import com.courseExercise.carpooling.db.UserDAO;
 import com.courseExercise.carpooling.filter.DateRequiredFeature;
 import com.courseExercise.carpooling.filter.SecurityFilter;
 import com.courseExercise.carpooling.health.TemplateHealthCheck;
@@ -49,6 +47,10 @@ import org.skife.jdbi.v2.DBI;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.EnumSet;
+import org.eclipse.jetty.servlets.CrossOriginFilter;
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration.Dynamic;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
@@ -108,11 +110,11 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
         filter.setInitParameter("allowedHeaders", "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin");
         filter.setInitParameter("allowCredentials", "true");
       }
-    
     @Override
     public void run(CarpoolingConfiguration configuration, Environment environment) {
-        final PersonDAO dao = new PersonDAO(hibernateBundle.getSessionFactory());
-
+    	
+    	configureCors(environment);
+    	
         final Template template = configuration.buildTemplate();
         environment.healthChecks().register("template", new TemplateHealthCheck(template));
         environment.jersey().register(DateRequiredFeature.class);
@@ -120,12 +122,15 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
         environment.jersey().register(new ViewResource());
         environment.jersey().register(new FilteredResource());
         environment.jersey().register(SecurityFilter.class);
-        
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
-        final UserDAO userDao = jdbi.onDemand(UserDAO.class);
-        environment.jersey().register(new UserResource(userDao,template));
-
+        final MyDAO myDAO = jdbi.onDemand(MyDAO.class);
+        
+        
+        environment.jersey().register(new UserResource(myDAO));
+        environment.jersey().register(new OrderResource(myDAO));
+        environment.jersey().register(new SignIn());
+        environment.jersey().register(new TempCarPoolingResource());
         environment.jersey().register(new HomeResource(null));
         environment.jersey().register(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<UserAuthorization>()
                 .setAuthenticator(new SimpleAuthenticator())
@@ -144,4 +149,6 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
                 */
         //environment.jersey().register(AuthFactory.binder(new ContextAuthFactory<UserAuthorization>(new CookieAuthenticator<LoginToken>(injector.getInstance(Key.get(new TypeLiteral<AuthService<LoginToken>>(){}))){},UserAuthorization.class)));
     }
+    
+    
 }

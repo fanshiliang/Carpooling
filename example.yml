@@ -15,7 +15,9 @@ database:
   password: 19940226
 
   # the JDBC URL
-  url: jdbc:mysql://localhost:3306/carpooling
+  url: jdbc:mysql://localhost:3306/carpooling?characterEncoding=UTF8
+  
+
 
 # use the simple server factory if you only want to run on a single port
 #server:
