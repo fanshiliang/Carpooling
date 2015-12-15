@@ -1,7 +1,7 @@
 package com.courseExercise.carpooling.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import com.courseExercice.carpooling.api.Saying;
+import com.courseExercise.carpooling.api.Saying;
 import com.courseExercise.carpooling.core.Template;
 import com.google.common.base.Optional;
 import io.dropwizard.jersey.caching.CacheControl;

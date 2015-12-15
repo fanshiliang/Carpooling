@@ -55,7 +55,7 @@ public interface MyDAO {
 	List<Order> findAllOders();
 	
 	//find all available orders to User
-	@SqlQuery("SELECT * FROM orders WHERE orderType = :orderType and ( ( startDate > curdate() or (startDate = curdate() and time > curtime())) or (orderType='Long' and endDate > curdate()) )and seatAvailable > 0 and orderNum = ALL(SELECT orderNum FROM user_orders WHERE id = 'jingshihao')       ")
+	@SqlQuery("SELECT * FROM orders WHERE orderType = :orderType and ( ( startDate > curdate() or (startDate = curdate() and time > curtime())) or (orderType='Long' and endDate > curdate()) )and seatAvailable > 0 and orderNum NOT IN (SELECT orderNum FROM user_orders WHERE id = 'jingshihao')")
 	@Mapper(OrderMapper.class)
 	List<Order> findAvailableOders(@Bind("id") String id, @Bind("orderType") String orderType);
 	
@@ -102,7 +102,7 @@ public interface MyDAO {
 	int findMaxOrderNum();
 	
 	// find time of all ongoing orders
-	@SqlQuery("SELECT * FROM orders WHERE ( ( startDate > curdate() or (startDate = curdate() and time > curtime())) or (orderType='Long' and endDate > curdate()) ) and orderNum = ANY(SELECT orderNum FROM user_orders WHERE id = :id)")
+	@SqlQuery("SELECT * FROM orders WHERE ( ( startDate > curdate() or (startDate = curdate() and time > curtime())) or (orderType='Long' and endDate > curdate()) ) and orderNum IN (SELECT orderNum FROM user_orders WHERE id = :id)")
 	@Mapper(OrderMapper.class)
 	List<Order> findUserOngoingOrder(@Bind("id") String id);
 

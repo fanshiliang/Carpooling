@@ -1,5 +1,7 @@
 package com.courseExercise.carpooling.resources;
 
+import io.dropwizard.views.View;
+
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.courseExercise.carpooling.core.Order;
 import com.courseExercise.carpooling.db.MyDAO;
+import com.google.common.base.Charsets;
 
 @Path("/order")
 public class OrderResource {
@@ -43,7 +46,7 @@ public class OrderResource {
 	@Path("/availableOrders/{id}/{orderType}")
 	@GET
 	@Produces("application/json")
-	public List<Order> findAvailableTempOrders(@PathParam("id") String id, @PathParam("id") String orderType) {
+	public List<Order> findAvailableTempOrders(@PathParam("id") String id, @PathParam("orderType") String orderType) {
 		return myDAO.findAvailableOders(id, orderType);
 	}
 
@@ -51,13 +54,13 @@ public class OrderResource {
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Order raiseOrder(@FormParam("carType") String carType,
+	public View raiseOrder(@FormParam("carType") String carType,
 			@FormParam("date") Date date, @FormParam("time") String time,
 			@FormParam("totalSeats") String seatTotal,
 			@FormParam("availableSeats") String seatAvailable,
 			@FormParam("route") String route,
 			@FormParam("starting") String starting,
-			@FormParam("ending") String ending) {
+			@FormParam("ending") String ending, @FormParam("id") String id) {
 
 		newOrderNum++;
 		int totalSeats = Integer.parseInt(seatTotal);
@@ -68,7 +71,10 @@ public class OrderResource {
 		String status = "ongoing";
 		myDAO.insertTempOrder(newOrderNum, orderType, carType, totalSeats, availableSeats,
 				startDate, endDate, Time.valueOf(time), starting, ending, route, status);
-		return myDAO.findOrderById(newOrderNum);
+		myDAO.insertUserOrder(id, newOrderNum);
+		return new View("/views/tempCarpooling/myTempOrders.mustache", Charsets.UTF_8) {
+		};
+
 	}
 
 	@Path("/myOrders/{id}")
