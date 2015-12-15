@@ -24,7 +24,9 @@ import org.skife.jdbi.v2.DBI;
 
 import java.util.Map;
 import java.util.EnumSet;
+
 import org.eclipse.jetty.servlets.CrossOriginFilter;
+
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration.Dynamic;
 
@@ -108,7 +110,7 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
         environment.jersey().register(new OrderResource(myDAO));
 
         environment.jersey().register(new SignIn());
-        environment.jersey().register(new TempCarPoolingResource());
+        environment.jersey().register(new CarPoolingViewResource());
         environment.jersey().register(new HomeResource(null));
     }
     

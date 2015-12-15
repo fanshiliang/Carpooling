@@ -6,9 +6,9 @@ import com.google.common.base.Charsets;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@Path("/tempCarpooling")
-public class TempCarPoolingResource {
-	public TempCarPoolingResource() {
+@Path("/Carpooling")
+public class CarPoolingViewResource {
+	public CarPoolingViewResource() {
 
 	}
 
@@ -21,16 +21,32 @@ public class TempCarPoolingResource {
 
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	@Path("/raise")
-	public View getRaiseOrderView() {
+	@Path("/TemporaryCarpooling")
+	public View getRaiseTempOrderView() {
 		return new View("/views/tempCarpooling/raiseTempOrder.mustache", Charsets.UTF_8) {
 		};
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	@Path("/orders")
-	public View getAllOrdersView() {
+	@Path("/LongtermCarpooling")
+	public View getRaiseLongOrderView() {
+		return new View("/views/tempCarpooling/raiseTempOrder.mustache", Charsets.UTF_8) {
+		};
+	}
+	
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	@Path("/JoinTemporaryCarpooling")
+	public View getAvailableTempOrdersView() {
+		return new View("/views/tempCarpooling/tempOrders.mustache", Charsets.UTF_8) {
+		};
+	}
+	
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	@Path("/JoinLongtermCarpooling")
+	public View getAvailableLongtermOrdersView() {
 		return new View("/views/tempCarpooling/tempOrders.mustache", Charsets.UTF_8) {
 		};
 	}
