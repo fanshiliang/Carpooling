@@ -7,14 +7,50 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Order {
 	private int orderNum;
+	private String orderType;
 	private String carType;
 	private int seatTotal;
 	private int seatAvailable;
+	private Date startDate;
+	private Date endDate;
 	private Time time;
-	private Date date;
 	private String starting;
 	private String ending;
+	
+	public String getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	private String route;
+	private String status;
 	private String[] routeList;
 	private int siteCount;
 	
@@ -74,14 +110,6 @@ public class Order {
 		this.seatAvailable = seatAvailable;
 	}
 
-	@JsonProperty
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
 
 	@JsonProperty
 	public Time getTime() {

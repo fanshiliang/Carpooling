@@ -13,10 +13,18 @@ import com.courseExercise.carpooling.core.Order;
 import com.courseExercise.carpooling.core.User;
 
 public interface MyDAO {
-
+	
+	//query password
+	@SqlUpdate("SELECT password From user where id = :id")
+	String getPassword(@Bind("id") String id);
+	
 	// insert user
 	@SqlUpdate("insert into user values (:id, :username, :password, :age, :carOwner, :drivingYears, :gender, :cellphone)")
-	void insertUser(@Bind("id") String id, @Bind("username") String username, @Bind("password") String password, @Bind("age") String age, @Bind("carOwner") String carOwner, @Bind("drivingYears") String drivingYears, @Bind("gender") String gender, @Bind("cellphone") String cellphone);
+	void insertUser(@Bind("id") String id, @Bind("username") String username,
+			@Bind("password") String password, @Bind("age") String age,
+			@Bind("carOwner") String carOwner,
+			@Bind("drivingYears") String drivingYears,
+			@Bind("gender") String gender, @Bind("cellphone") String cellphone);
 
 	// find user's password by id
 	@SqlQuery("select password from user where id = :id")
@@ -33,56 +41,69 @@ public interface MyDAO {
 	List<User> findAllUsers();
 
 	// insert temp_order
-	@SqlUpdate("insert into temp_orders values (:orderNum, :carType, :seatTotal, :seatAvailable, :date, :time, :starting, :ending, :route)")
+	@SqlUpdate("insert into orders values (:orderNum, :orderType, :carType, :seatTotal, :seatAvailable, :startDate, :endDate, :time, :starting, :ending, :route, :status)")
 	void insertTempOrder(@Bind("orderNum") int orderNum,
-			@Bind("carType") String carType, @Bind("seatTotal") int SeatToal,
-			@Bind("seatAvailable") int SeatAvailable, @Bind("date") Date date,
+			@Bind("orderType") String orderType, @Bind("carType") String carType,
+			@Bind("seatTotal") int seatToal,
+			@Bind("seatAvailable") int seatAvailable, @Bind("startDate") Date startDate, @Bind("endDate") Date endDate,
 			@Bind("time") Time time, @Bind("starting") String starting,
-			@Bind("ending") String string, @Bind("route") String route);
+			@Bind("ending") String ending, @Bind("route") String route, @Bind("status") String status);
 
 	// find all available orders
-	@SqlQuery("SELECT * FROM temp_orders WHERE (date > curdate() or (date = curdate() and time > curtime())) and seatAvailable > 0")
+	@SqlQuery("SELECT * FROM orders WHERE  ( ( startDate > curdate() or (startDate = curdate() and time > curtime())) or (orderType='Long' and endDate > curdate()) )and seatAvailable > 0")
 	@Mapper(OrderMapper.class)
 	List<Order> findAllOders();
 	
+	//find all available orders to User
+	@SqlQuery("SELECT * FROM orders WHERE orderType = :orderType and ( ( startDate > curdate() or (startDate = curdate() and time > curtime())) or (orderType='Long' and endDate > curdate()) )and seatAvailable > 0 and orderNum = ALL(SELECT orderNum FROM user_orders WHERE id = 'jingshihao')       ")
+	@Mapper(OrderMapper.class)
+	List<Order> findAvailableOders(@Bind("id") String id, @Bind("orderType") String orderType);
+	
+	
+
 	// find order by orderNumber
-	@SqlQuery("SELECT * FROM temp_orders WHERE orderNum = :orderNum")
+	@SqlQuery("SELECT * FROM orders WHERE orderNum = :orderNum")
 	@Mapper(OrderMapper.class)
 	Order findOrderById(@Bind("orderNum") int orderNum);
 
 	// find available orders by ending
-	@SqlQuery("SELECT * FROM temp_orders t WHERE ( t.date > curdate() or (t.date = curdate() and t.time > curtime()) ) and seatAvailable > 0 and t.ending = :ending and t.orderNum not in (select orderNum from user_orders where id = :id)")
+	@SqlQuery("SELECT * FROM orders t WHERE ( t.date > curdate() or (t.date = curdate() and t.time > curtime()) ) and seatAvailable > 0 and t.ending = :ending and t.orderNum not in (select orderNum from user_orders where id = :id)")
 	@Mapper(OrderMapper.class)
 	Order findOrderByEnding(@Bind("ending") String ending, @Bind("id") String id);
-	
+
 	// find available orders by ending
-	@SqlQuery("SELECT * FROM temp_orders t WHERE ( t.date > curdate() or (t.date = curdate() and t.time > curtime()) ) and seatAvailable > 0 and t.ending = :ending")
+	@SqlQuery("SELECT * FROM orders t WHERE ( t.date > curdate() or (t.date = curdate() and t.time > curtime()) ) and seatAvailable > 0 and t.ending = :ending")
 	@Mapper(OrderMapper.class)
 	List<Order> findOrderByEndingNoID(@Bind("ending") String ending);
 
-	//join order
+	// join order
 	@SqlUpdate("insert into user_orders (id, orderNum) values (:id, :orderNum)")
 	void insertUserOrder(@Bind("id") String id, @Bind("orderNum") int orderNum);
-	
-	//subtract available seats when user join an order
-	@SqlUpdate("update temp_orders set seatAvailable = seatAvailable - 1 where orderNum = :orderNum")
+
+	// subtract available seats when user join an order
+	@SqlUpdate("update orders set seatAvailable = seatAvailable - 1 where orderNum = :orderNum")
 	void subTractSeatsAvaible(@Bind("orderNum") int orderNum);
-	
-	//cancle order
+
+	// cancle order
 	@SqlUpdate("delete from user_orders where id = :id and orderNum = :orderNum")
 	void cancleOrder(@Bind("id") String id, @Bind("orderNum") int orderNum);
-	
-	//add available seats when user cancle an order
-	@SqlUpdate("update temp_orders set seatAvailable = seatAvailable - 1 where orderNum = :orderNum")
+
+	// add available seats when user cancle an order
+	@SqlUpdate("update orders set seatAvailable = seatAvailable - 1 where orderNum = :orderNum")
 	void addSeatsAvaible(@Bind("orderNum") int orderNum);
-	
+
 	//
-	@SqlQuery("select * from temp_orders where orderNum in (select orderNum from user_orders where id = :id)")
+	@SqlQuery("select * from orders where orderNum in (select orderNum from user_orders where id = :id)")
 	@Mapper(OrderMapper.class)
 	List<Order> findAllUserOrders(@Bind("id") String id);
 
 	// find max order number
-	@SqlQuery("select MAX(orderNum) from temp_orders")
+	@SqlQuery("select MAX(orderNum) from orders")
 	int findMaxOrderNum();
 	
+	// find time of all ongoing orders
+	@SqlQuery("SELECT * FROM orders WHERE ( ( startDate > curdate() or (startDate = curdate() and time > curtime())) or (orderType='Long' and endDate > curdate()) ) and orderNum = ANY(SELECT orderNum FROM user_orders WHERE id = :id)")
+	@Mapper(OrderMapper.class)
+	List<Order> findUserOngoingOrder(@Bind("id") String id);
+
 }
