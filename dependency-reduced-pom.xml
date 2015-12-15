@@ -2,17 +2,36 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.dropwizard</groupId>
-  <artifactId>dropwizard-example</artifactId>
+  <artifactId>Carpooling</artifactId>
   <name>Dropwizard Example Application</name>
-  <version>0.9.0-rc5-SNAPSHOT</version>
+  <version>1.0</version>
   <prerequisites>
     <maven>3.0.0</maven>
   </prerequisites>
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>2.6.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.18.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.7</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>1.3.1</version>
         <executions>
           <execution>
             <id>enforce</id>
@@ -28,17 +47,7 @@
         </executions>
       </plugin>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-          <encoding>UTF-8</encoding>
-        </configuration>
-      </plugin>
-      <plugin>
         <artifactId>maven-source-plugin</artifactId>
-        <version>2.4</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -50,7 +59,6 @@
       </plugin>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.5</version>
         <configuration>
           <archive>
             <manifest>
@@ -61,21 +69,12 @@
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>2.3</version>
         <executions>
           <execution>
             <phase>package</phase>
             <goals>
               <goal>shade</goal>
             </goals>
-            <configuration>
-              <transformers>
-                <transformer />
-                <transformer>
-                  <mainClass>com.example.helloworld.HelloWorldApplication</mainClass>
-                </transformer>
-              </transformers>
-            </configuration>
           </execution>
         </executions>
         <configuration>
@@ -90,21 +89,12 @@
               </excludes>
             </filter>
           </filters>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>2.8.2</version>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.4</version>
-        <configuration>
-          <skip>true</skip>
-          <skipDeploy>true</skipDeploy>
+          <transformers>
+            <transformer />
+            <transformer>
+              <mainClass>com.courseExercise.carpooling.CarpoolingApplication</mainClass>
+            </transformer>
+          </transformers>
         </configuration>
       </plugin>
     </plugins>
@@ -120,7 +110,7 @@
     <dependency>
       <groupId>io.dropwizard</groupId>
       <artifactId>dropwizard-testing</artifactId>
-      <version>0.9.0-rc5-SNAPSHOT</version>
+      <version>0.9.0-rc6-SNAPSHOT</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -198,11 +188,25 @@
       </exclusions>
     </dependency>
   </dependencies>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-bom</artifactId>
+        <version>0.9.0-rc6-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <properties>
-    <h2.version>1.4.190</h2.version>
-    <jersey.version>2.22.1</jersey.version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.site.deploy.skip>true</maven.site.deploy.skip>
+    <maven.site.skip>true</maven.site.skip>
+    <maven.compiler.source>1.7</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.deploy.skip>true</maven.deploy.skip>
+    <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
 </project>
 
