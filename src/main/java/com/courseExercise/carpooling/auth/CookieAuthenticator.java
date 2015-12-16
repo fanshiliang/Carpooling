@@ -5,8 +5,8 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.UriBuilder;
+import java.util.ArrayList;
 
-import org.assertj.core.util.Lists;
 import org.glassfish.jersey.server.ExtendedUriInfo;
 import org.glassfish.jersey.server.model.Resource;
 import org.glassfish.jersey.server.model.ResourceMethod;
@@ -58,7 +58,7 @@ public abstract class CookieAuthenticator<T extends CookieToken> implements Auth
 		ResourceMethod resourceMethod = uriInfo.getMatchedResourceMethod();
 		UriBuilder pathBuilder = UriBuilder.fromPath("/");
 		Resource parent = resourceMethod.getParent();
-		List<String> resourceList = Lists.newArrayList();
+		List<String> resourceList = new ArrayList<>();
 		while(parent != null){
 			resourceList.add(parent.getPath());
 			parent = parent.getParent();

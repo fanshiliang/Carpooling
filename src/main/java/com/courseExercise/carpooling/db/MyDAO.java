@@ -15,7 +15,7 @@ import com.courseExercise.carpooling.core.User;
 public interface MyDAO {
 	
 	//query password
-	@SqlUpdate("SELECT password From user where id = :id")
+	@SqlQuery("SELECT password From user where id = :id")
 	String getPassword(@Bind("id") String id);
 	
 	// insert user
