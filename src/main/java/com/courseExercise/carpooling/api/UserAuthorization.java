@@ -25,12 +25,11 @@ public class UserAuthorization implements Principal {
 		return password;
 	}
 
-//	@Override
-//	public boolean implies(Subject arg0) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-	
+	public boolean implies(Subject arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
