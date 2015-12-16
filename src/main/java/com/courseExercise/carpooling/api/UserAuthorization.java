@@ -25,7 +25,6 @@ public class UserAuthorization implements Principal {
 		return password;
 	}
 
-	@Override
 	public boolean implies(Subject arg0) {
 		// TODO Auto-generated method stub
 		return false;

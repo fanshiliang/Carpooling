@@ -4,6 +4,7 @@ import io.dropwizard.auth.Auth;
 import io.dropwizard.views.View;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,7 +19,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 
-import org.assertj.core.util.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -81,7 +81,7 @@ public class HomeResource {
 	}
 	
 	private NewCookie[] getCookies(CookieToken token, boolean delete){
-		List<NewCookie> newCookies = Lists.newArrayList();
+		List<NewCookie> newCookies = new ArrayList<>();
 		for(Cookie cookie : token.getCookies()){
 			newCookies.add(
 					new NewCookie(cookie.getName(),
