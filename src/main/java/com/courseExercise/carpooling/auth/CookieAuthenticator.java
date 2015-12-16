@@ -1,5 +1,6 @@
 package com.courseExercise.carpooling.auth;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.Cookie;

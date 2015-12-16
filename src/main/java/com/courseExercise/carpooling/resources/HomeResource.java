@@ -5,6 +5,7 @@ import io.dropwizard.auth.AuthenticationException;
 import io.dropwizard.views.View;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
 
