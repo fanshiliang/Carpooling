@@ -18,9 +18,9 @@ public class BasicAuthService {
 	 {
 	    	
 	   		if(myDao.getPassword(request.getUserId()).equals(request.getPassword())){
-	   			return Optional.of(new LoginResult(true));
+	   			return Optional.of(new LoginResult(true,request.getUserId()));
 	   		}
 	   		else
-	   			return Optional.of(new LoginResult(false));
+	   			return Optional.of(new LoginResult(false,null));
      }
 }
