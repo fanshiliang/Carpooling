@@ -1,10 +1,13 @@
 package com.courseExercise.carpooling.resources;
 
 import io.dropwizard.auth.Auth;
+import io.dropwizard.auth.AuthenticationException;
 import io.dropwizard.views.View;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
@@ -17,15 +20,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
+import com.google.common.base.Optional;
 
-import org.assertj.core.util.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.courseExercise.carpooling.api.LoginRequest;
+import com.courseExercise.carpooling.api.LoginResult;
 import com.courseExercise.carpooling.api.UserAuthorization;
+import com.courseExercise.carpooling.CarpoolingApplication;
 import com.courseExercise.carpooling.api.CookieToken;
 import com.courseExercise.carpooling.auth.AuthService;
+import com.courseExercise.carpooling.auth.BasicAuthService;
+import com.courseExercise.carpooling.auth.SimpleAuthenticator;
 import com.courseExercise.carpooling.views.LoginView;
 import com.courseExercise.carpooling.views.TestNavigationView;
 
@@ -33,16 +40,16 @@ import com.courseExercise.carpooling.views.TestNavigationView;
 public class HomeResource {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeResource.class);
 	
-	private final AuthService<?> authService;
+	BasicAuthService authenticator;
 	
 	@Inject
-	public HomeResource(AuthService<?> authService){
-		this.authService = authService;
+	public HomeResource(BasicAuthService authenticator){
+		this.authenticator = authenticator;
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	public  Response getView( UserAuthorization authorization){
+	public  Response getView(UserAuthorization authorization){
 		String redirectUrl = "/signin";
 		if(authorization != null){
 			redirectUrl ="/navigation";
@@ -61,15 +68,17 @@ public class HomeResource {
 	@GET
 	@Path("signin")
 	@Produces(MediaType.TEXT_HTML)
-	public View getLoginView(@Auth UserAuthorization authorization){
+	public View getLoginView( UserAuthorization authorization){
 		return new LoginView();
 	}
 	
 	@POST
-	@Path("valid")
+	@Path("login")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response Valid(@Auth UserAuthorization authorization){
-		return Response.ok().build();
+	public Optional<LoginResult> Valid( LoginRequest request) throws AuthenticationException{
+		Optional<LoginResult> res = authenticator.authenticate(request);
+		return res;
 	}
 	
 	@POST
@@ -90,7 +99,7 @@ public class HomeResource {
 	}
 	
 	private NewCookie[] getCookies(CookieToken token, boolean delete){
-		List<NewCookie> newCookies = Lists.newArrayList();
+		List<NewCookie> newCookies = new ArrayList<>();
 		for(Cookie cookie : token.getCookies()){
 			newCookies.add(
 					new NewCookie(cookie.getName(),

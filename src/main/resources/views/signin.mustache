@@ -48,20 +48,26 @@
 </html>
 <script>
 function valid(){
-var username = document.getElementById("inputUsername").value;
-var password = document.getElementById("inputPassword").value
-
+var userName = document.getElementById("inputUsername").value;
+var passWord = document.getElementById("inputPassword").value
+var sendInfo = {
+           username: userName,
+           password: passWord
+       };
 $.ajax
 ({
   type: "POST",
   contentType: "application/json; charset=utf-8",
-  url: "http://127.0.0.1:12306/valid",
+  url: "http://127.0.0.1:12306/login",
   dataType: 'json',
   async: false,
   headers: {
-    "Authorization": "Basic " + btoa(username + ":" + password)
+    "Authorization": "Basic " + btoa(userName + ":" + passWord)
   },
-  data: '',
+  data: JSON.stringify({
+    "u":userName,
+    "p":passWord,
+  }),
   success: function (){
     alert('Thanks for your comment!'); 
   }
