@@ -14,7 +14,7 @@ public class ViewResource {
     @Path("/utf8.ftl")
     public View freemarkerUTF8() {
         return new View("/views/ftl/utf8.ftl", Charsets.UTF_8) {
-        };
+        }; 
     }
 
     @GET

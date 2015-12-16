@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LoginRequest {
-
+ 
 	@NotBlank(message = "Bank Id must not be blank")
 	@JsonProperty("u")
 	private String userId;

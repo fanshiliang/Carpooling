@@ -9,7 +9,7 @@ import net.sourceforge.argparse4j.impl.Arguments;
 import net.sourceforge.argparse4j.inf.Namespace;
 import net.sourceforge.argparse4j.inf.Subparser;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.LoggerFactory; 
 
 public class RenderCommand extends ConfiguredCommand<CarpoolingConfiguration> {
     private static final Logger LOGGER = LoggerFactory.getLogger(RenderCommand.class);

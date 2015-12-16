@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LoginConfiguration {
 
-	@JsonProperty("server")
+	@JsonProperty("server") 
 	private ServerConfiguration loginServer;
 	
 	@NotBlank

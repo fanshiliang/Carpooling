@@ -27,6 +27,7 @@ import com.courseExercise.carpooling.api.UserAuthorization;
 import com.courseExercise.carpooling.api.CookieToken;
 import com.courseExercise.carpooling.auth.AuthService;
 import com.courseExercise.carpooling.views.LoginView;
+import com.courseExercise.carpooling.views.TestNavigationView;
 
 @Path("/")
 public class HomeResource {
@@ -48,6 +49,14 @@ public class HomeResource {
 		}
 		return Response.temporaryRedirect(URI.create(redirectUrl)).build();		
 	}
+	
+	@GET
+	@Path("testNavigation")
+	@Produces(MediaType.TEXT_HTML)
+	public View testNaviation( UserAuthorization authorization){
+		return new TestNavigationView();		
+	}
+	
 	
 	@GET
 	@Path("signin")

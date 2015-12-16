@@ -75,7 +75,7 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
     public String getName() {
         return "hello-world";
     }
-
+ 
     @Override
     public void initialize(Bootstrap<CarpoolingConfiguration> bootstrap) {
         // Enable variable substitution with environment variables

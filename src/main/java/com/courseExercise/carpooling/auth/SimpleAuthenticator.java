@@ -2,7 +2,7 @@ package com.courseExercise.carpooling.auth;
 
 import com.courseExercise.carpooling.api.UserAuthorization;
 import com.courseExercise.carpooling.core.User;
-import com.courseExercise.carpooling.db.UserDAO;
+import com.courseExercise.carpooling.db.UserDAO; 
 
 import io.dropwizard.auth.AuthenticationException;
 import io.dropwizard.auth.Authenticator;

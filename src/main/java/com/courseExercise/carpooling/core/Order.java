@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Order {
 	private int orderNum;
 	private String orderType;
-	private String carType;
+	private String carType; 
 	private int seatTotal;
 	private int seatAvailable;
 	private Date startDate;

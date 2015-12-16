@@ -17,7 +17,7 @@ public class CarpoolingConfiguration extends Configuration {
     private String template;
 
     @NotEmpty
-    private String defaultName = "Stranger";
+    private String defaultName = "Stranger"; 
 
     @Valid
     @NotNull

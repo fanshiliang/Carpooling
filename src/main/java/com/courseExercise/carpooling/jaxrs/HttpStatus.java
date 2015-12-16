@@ -4,7 +4,7 @@ package com.courseExercise.carpooling.jaxrs;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-public class HttpStatus {
+public class HttpStatus { 
 	
 	//401 - unauthorized
 	public static Response UNAUTHORIZED = get(Status.UNAUTHORIZED,"Credentials are required to access this resource.");

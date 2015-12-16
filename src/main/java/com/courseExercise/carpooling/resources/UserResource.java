@@ -48,7 +48,7 @@ public class UserResource {
 
 	}
 
-	public UserResource(MyDAO myDAO) {
+	public UserResource(MyDAO myDAO) { 
 		this.myDAO = myDAO;
 	}
 	
