@@ -15,10 +15,8 @@ import com.courseExercise.carpooling.cli.RenderCommand;
 import com.courseExercise.carpooling.filter.DateRequiredFeature;
 import com.courseExercise.carpooling.filter.SecurityFilter;
 import com.courseExercise.carpooling.health.TemplateHealthCheck;
-import com.courseExercise.carpooling.resources.FilteredResource;
 import com.courseExercise.carpooling.resources.HomeResource;
 import com.courseExercise.carpooling.resources.UserResource;
-import com.courseExercise.carpooling.resources.ViewResource;
 
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.Application;
@@ -107,8 +105,6 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
         environment.healthChecks().register("template", new TemplateHealthCheck(template));
         environment.jersey().register(DateRequiredFeature.class);
         environment.jersey().register(RolesAllowedDynamicFeature.class);
-        environment.jersey().register(new ViewResource());
-        environment.jersey().register(new FilteredResource());
         environment.jersey().register(SecurityFilter.class);
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
