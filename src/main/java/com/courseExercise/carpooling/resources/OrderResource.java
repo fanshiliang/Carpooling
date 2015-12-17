@@ -85,7 +85,7 @@ public class OrderResource {
 	}
 	
 	private boolean compareTime(Time t1, Time t2){
-		if(Math.abs(t1.getHours()*60 + t1.getMinutes() - t2.getHours() - t2.getMinutes()) > 30)
+		if(Math.abs(t1.getHours()*60 + t1.getMinutes() - t2.getHours()*60 - t2.getMinutes()) > 29)
 			return true;
 		else return false;
 	}
@@ -103,6 +103,7 @@ public class OrderResource {
 			}				
 		}
 		myDAO.insertUserOrder(id, orderNum);
+		myDAO.subTractSeatsAvaible(orderNum);
 		return true;
 	}
 	
@@ -111,7 +112,7 @@ public class OrderResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Order> cancelOrder(@PathParam("id") String id, @PathParam("orderNum") int orderNum){
 		myDAO.cancleOrder(id, orderNum);
-		myDAO.subTractSeatsAvaible(orderNum);
+		myDAO.addSeatsAvaible(orderNum);
 		return myDAO.findAllUserOrders(id);		
 	}
 
