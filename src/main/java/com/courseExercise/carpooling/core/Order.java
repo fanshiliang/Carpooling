@@ -143,12 +143,11 @@ public class Order {
 	public void setRoute(String route) {
 		this.route = route;
 		String[] routeList = route.split(",");
-		this.siteCount = routeList.length + 1;
+		this.siteCount = routeList.length;
 		String[] routeListAll = new String[this.siteCount];
 		for(int i = 0; i < routeList.length; i ++){
 			routeListAll[i] = routeList[i];
 		}
-		routeListAll[routeList.length] = this.starting;
 		this.routeList = routeListAll;
 		
 	}
