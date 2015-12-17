@@ -9,7 +9,7 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
 @Provider
-public class DateNotSpecifiedFilter implements ContainerRequestFilter {
+public class DateNotSpecifiedFilter implements ContainerRequestFilter { 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         String dateHeader = requestContext.getHeaderString(HttpHeaders.DATE);

@@ -7,7 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("/Carpooling")
-public class CarPoolingViewResource {
+public class CarPoolingViewResource { 
 	public CarPoolingViewResource() {
 
 	}

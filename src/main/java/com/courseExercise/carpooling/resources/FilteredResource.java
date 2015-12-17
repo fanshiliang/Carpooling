@@ -9,7 +9,7 @@ import javax.ws.rs.Path;
 public class FilteredResource {
 
     @GET
-    @DateRequired
+    @DateRequired 
     @Path("/hello")
     public String sayHello() {
         return "hello";

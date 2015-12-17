@@ -4,7 +4,7 @@ import javax.ws.rs.core.Response;
 
 import com.courseExercise.carpooling.jaxrs.HttpStatus;
 
-public class ApplicationException extends RuntimeException{
+public class ApplicationException extends RuntimeException{ 
 	
 	public static ApplicationException NOT_FOUND = new ApplicationException(HttpStatus.NOT_FOUND);
 	

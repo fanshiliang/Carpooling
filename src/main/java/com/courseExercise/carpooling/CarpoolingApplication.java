@@ -2,13 +2,10 @@
 package com.courseExercise.carpooling;
 
 import io.dropwizard.auth.AuthDynamicFeature;
-import io.dropwizard.auth.AuthValueFactoryProvider;
 import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
 
 import com.courseExercise.carpooling.api.UserAuthorization;
-import com.courseExercise.carpooling.api.LoginToken;
-import com.courseExercise.carpooling.auth.AuthService;
-import com.courseExercise.carpooling.auth.CookieAuthenticator;
+import com.courseExercise.carpooling.auth.BasicAuthService;
 import com.courseExercise.carpooling.auth.SimpleAuthenticator;
 import com.courseExercise.carpooling.auth.SimpleAuthorizer;
 import com.courseExercise.carpooling.core.*;
@@ -20,11 +17,8 @@ import com.courseExercise.carpooling.filter.SecurityFilter;
 import com.courseExercise.carpooling.health.TemplateHealthCheck;
 import com.courseExercise.carpooling.resources.FilteredResource;
 import com.courseExercise.carpooling.resources.HomeResource;
-import com.courseExercise.carpooling.resources.PeopleResource;
-import com.courseExercise.carpooling.resources.PersonResource;
 import com.courseExercise.carpooling.resources.UserResource;
 import com.courseExercise.carpooling.resources.ViewResource;
-import com.fasterxml.classmate.util.ResolvedTypeCache.Key;
 
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.Application;
@@ -37,26 +31,18 @@ import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
-import io.dropwizard.auth.*;
 
-import org.apache.commons.lang3.reflect.TypeLiteral;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.skife.jdbi.v2.DBI;
 
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.EnumSet;
 
-import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration.Dynamic;
 
-import javax.servlet.DispatcherType;
-import javax.servlet.FilterRegistration;
-import javax.servlet.FilterRegistration.Dynamic;
 
 public class CarpoolingApplication extends Application<CarpoolingConfiguration> {
     public static void main(String[] args) throws Exception {
@@ -75,7 +61,7 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
     public String getName() {
         return "hello-world";
     }
-
+ 
     @Override
     public void initialize(Bootstrap<CarpoolingConfiguration> bootstrap) {
         // Enable variable substitution with environment variables
@@ -128,14 +114,14 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
         final MyDAO myDAO = jdbi.onDemand(MyDAO.class);
         
-        
+        environment.jersey().register(myDAO);
         environment.jersey().register(new UserResource(myDAO));
         environment.jersey().register(new OrderResource(myDAO));
         environment.jersey().register(new SignIn());
         environment.jersey().register(new CarPoolingViewResource());
-        environment.jersey().register(new HomeResource(null));
+        environment.jersey().register(new HomeResource(new BasicAuthService(myDAO)));
         environment.jersey().register(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<UserAuthorization>()
-                .setAuthenticator(new SimpleAuthenticator())
+                .setAuthenticator(new SimpleAuthenticator(myDAO))
                 .setAuthorizer(new SimpleAuthorizer())
                 .setRealm("SUPER SECRET STUFF")
                 .buildAuthFilter()));

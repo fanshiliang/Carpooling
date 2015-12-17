@@ -32,7 +32,7 @@ public class HelloWorldResource {
     @Timed(name = "get-requests")
     @CacheControl(maxAge = 1, maxAgeUnit = TimeUnit.DAYS)
     public Saying sayHello(@QueryParam("name") Optional<String> name) {
-        return new Saying(counter.incrementAndGet(), template.render(name));
+        return new Saying(counter.incrementAndGet(), template.render(name)); 
     }
 
     @POST

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.glassfish.jersey.server.ExtendedUriInfo;
 
 public class ContextCredentials {
-
+ 
 	private final boolean required;
 	private final ExtendedUriInfo uriInfo;
 	private final HttpServletRequest request;

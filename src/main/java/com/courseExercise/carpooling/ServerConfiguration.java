@@ -5,7 +5,7 @@ public class ServerConfiguration {
 	private String schema = "http";
 	private String host = "localhost";
 	private int port = 12306;
-	public String getSchema() {
+	public String getSchema() { 
 		return schema;
 	}
 	public void setSchema(String schema) {

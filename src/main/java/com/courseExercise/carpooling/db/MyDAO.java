@@ -13,7 +13,7 @@ import com.courseExercise.carpooling.core.Order;
 import com.courseExercise.carpooling.core.User;
 
 public interface MyDAO {
-	
+	 
 	//query password
 	@SqlQuery("SELECT password From user where id = :id")
 	String getPassword(@Bind("id") String id);
