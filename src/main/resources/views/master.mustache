@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Rickie">
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
-    {{$links}}
+    {{$pageLinks}}
     <link rel="icon" href="../../favicon.ico">
-    {{/links}}
+    {{/pageLinks}}
     <title>
       {{$title}}Navigation to Carpooling{{/title}}
     </title>
@@ -19,8 +19,9 @@
   .service-block{margin-top: 60px;}
 	.banner-under-nav{text-align: center;}
   </style>
+  {{$pageStyle}}
+  {{/pageStyle}}
   <body>
-
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -89,7 +90,7 @@
               </ul>
             </li>
 			<li>
-                  <a href="#">
+                  <a id="userid" href="#">
                     {{username}}
                   </a>
                 </li>
@@ -103,14 +104,14 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="text-muted">This is the footer of the page</p>
+        <p class="text-muted">Carpooling for your daily convenience</p>
       </div>
     </footer>
-  <script src="../dist/js/jquery.min.js"></script>
-  <script src="../dist/js/bootstrap.min.js"></script>
-  {{$scripts}}
+  <script src="../../assets/js/jquery.min.js"></script>
+  <script src="../../assets/js/bootstrap.min.js"></script>
+  {{$pageScripts}}
 	
-	{{/scripts}}
+	{{/pageScripts}}
 
 
   </body>
