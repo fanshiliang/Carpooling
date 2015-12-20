@@ -89,7 +89,7 @@ public interface MyDAO {
 	void cancleOrder(@Bind("id") String id, @Bind("orderNum") int orderNum);
 
 	// add available seats when user cancle an order
-	@SqlUpdate("update orders set seatAvailable = seatAvailable - 1 where orderNum = :orderNum")
+	@SqlUpdate("update orders set seatAvailable = seatAvailable + 1 where orderNum = :orderNum")
 	void addSeatsAvaible(@Bind("orderNum") int orderNum);
 
 	//

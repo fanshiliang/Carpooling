@@ -1,8 +1,12 @@
 package com.courseExercise.carpooling.views;
 
+import com.courseExercise.carpooling.api.UserAuthorization;
+
 public class TestNavigationView extends MasterView{
 	 
-	public TestNavigationView(){
-		super("/views/testHTMLs/navigationTemp.mustache",null);
+
+	public TestNavigationView(UserAuthorization authorization){
+		super("/views/tempCarpooling/navigationTemp.mustache",authorization);
+
 	}
 }
