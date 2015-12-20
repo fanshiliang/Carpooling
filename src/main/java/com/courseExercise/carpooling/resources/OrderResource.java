@@ -63,7 +63,7 @@ public class OrderResource {
 		return possibleOrders;
 	}
 
-	@Path("/raiseOrder/{id}")
+	@Path("/raiseOrder")
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.TEXT_HTML)
@@ -74,14 +74,16 @@ public class OrderResource {
 			@FormParam("seatAvailable") String seatAvailable,
 			@FormParam("route") String route,
 			@FormParam("starting") String starting,
-			@FormParam("ending") String ending, @PathParam("id") String id) {
+			@FormParam("ending") String ending, @FormParam("id") String id) {
 
 		newOrderNum++;
 		String status = "ongoing";
 		myDAO.insertTempOrder(newOrderNum, orderType, carType, Integer.parseInt(seatTotal), Integer.parseInt(seatAvailable),
 				startDate, endDate, Time.valueOf(time), starting, ending, route, status);
 		myDAO.insertUserOrder(id, newOrderNum);
-		return new MyOrdersView(null);
+		return new View("/views/tempCarpooling/myTempOrders.mustache", Charsets.UTF_8) {
+		};
+
 	}
 
 	@Path("/myOrders/{id}")
@@ -100,12 +102,19 @@ public class OrderResource {
 	
 	@Path("/join/{id}/{orderNum}")
 	@GET
-	@Produces(MediaType.TEXT_HTML)
-	public View joinOrder(@PathParam("id") String id,
+	@Produces(MediaType.APPLICATION_JSON)
+	public boolean joinOrder(@PathParam("id") String id,
 			@PathParam("orderNum") int orderNum) {
+		Order newOrder = myDAO.findOrderById(orderNum);
+		List<Order> onGoing = myDAO.findUserOngoingOrder(id);
+		for(Order order: onGoing){
+			if(!compareTime(order.getTime(), newOrder.getTime())){
+				return false;
+			}				
+		}
 		myDAO.insertUserOrder(id, orderNum);
 		myDAO.subTractSeatsAvaible(orderNum);
-		return new MyOrdersView(null);
+		return true;
 	}
 	
 	@Path("/cancle/{id}/{orderNum}")

@@ -7,6 +7,5 @@ public class TestNavigationView extends MasterView{
 
 	public TestNavigationView(UserAuthorization authorization){
 		super("/views/tempCarpooling/navigationTemp.mustache",authorization);
-
 	}
 }
