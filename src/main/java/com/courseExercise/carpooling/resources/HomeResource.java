@@ -60,13 +60,6 @@ public class HomeResource {
 		return Response.temporaryRedirect(URI.create(redirectUrl)).build();		
 	}
 	
-	@GET
-	@Path("testNavigation")
-	@Produces(MediaType.TEXT_HTML)
-	public View testNaviation( UserAuthorization authorization){
-		return new TestNavigationView(authorization);		
-	}
-	
 	
 	@GET
 	@Path("signin")
@@ -76,10 +69,10 @@ public class HomeResource {
 	}
 		
 	@POST
-	@Path("signin")
+	@Path("login")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response login(@Valid LoginRequest loginRequest){
+	public Response login(LoginRequest loginRequest){
 		return Response.ok().cookie(getCookies((CookieToken) authService.authenticate(loginRequest.getUserId(), loginRequest.getPassword()),false)).build();
 	}
 	
