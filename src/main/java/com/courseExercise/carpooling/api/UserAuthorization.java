@@ -14,7 +14,6 @@ public class UserAuthorization implements Principal {
 	{
 		this.username = username;
 		this.password = password;
-		
 	}
 
 	public String getUsername() {
