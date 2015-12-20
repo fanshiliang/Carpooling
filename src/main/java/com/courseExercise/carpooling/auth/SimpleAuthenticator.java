@@ -19,9 +19,9 @@ public class SimpleAuthenticator implements Authenticator<BasicCredentials, User
     public Optional<UserAuthorization> authenticate(BasicCredentials credentials) throws AuthenticationException    
     {
     	System.out.println("enter authorization");
-   		if (myDAO.getPassword(credentials.getUsername()).equals(credentials.getPassword())) {
-              return Optional.of(new UserAuthorization(credentials.getUsername(), credentials.getPassword()));
-        }
+//   		if (myDAO.getPassword(credentials.getUsername()).equals(credentials.getPassword())) {
+//              return Optional.of(new UserAuthorization(credentials.getUsername(), credentials.getPassword()));
+//        }
         return Optional.absent();
     }
 }
