@@ -13,7 +13,7 @@ public class UserAuthorization implements Principal {
 	public UserAuthorization(String username, String password)
 	{
 		this.username = username;
-		this.password = password;		
+		this.password = password;
 	}
 
 	public String getUsername() {

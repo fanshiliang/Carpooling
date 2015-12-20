@@ -50,12 +50,13 @@ public class OrderResource {
 		return myDAO.findAvailableOders(id, orderType);
 	}
 
-	@Path("/raiseTempOrder")
+	@Path("/raiseOrder")
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.APPLICATION_JSON)
 	public View raiseOrder(@FormParam("carType") String carType,
-			@FormParam("date") Date date, @FormParam("time") String time,
+			@FormParam("orderType") String orderType,
+			@FormParam("startDate") Date startDate, @FormParam("endDate") Date endDate, @FormParam("time") String time, 
 			@FormParam("totalSeats") String seatTotal,
 			@FormParam("availableSeats") String seatAvailable,
 			@FormParam("route") String route,
@@ -65,9 +66,6 @@ public class OrderResource {
 		newOrderNum++;
 		int totalSeats = Integer.parseInt(seatTotal);
 		int availableSeats = Integer.parseInt(seatAvailable);
-		String orderType = "Temp";
-		Date startDate = date;
-		Date endDate = date;
 		String status = "ongoing";
 		myDAO.insertTempOrder(newOrderNum, orderType, carType, totalSeats, availableSeats,
 				startDate, endDate, Time.valueOf(time), starting, ending, route, status);
@@ -81,6 +79,7 @@ public class OrderResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Order> mylOrder(@PathParam("id") String id){
+		myDAO.updateOrderStatus();
 		return myDAO.findAllUserOrders(id);		
 	}
 	

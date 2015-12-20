@@ -35,6 +35,7 @@ import com.courseExercise.carpooling.auth.AuthService;
 import com.courseExercise.carpooling.auth.BasicAuthService;
 import com.courseExercise.carpooling.auth.SimpleAuthenticator;
 import com.courseExercise.carpooling.views.LoginView;
+import com.courseExercise.carpooling.views.NavigationView;
 import com.courseExercise.carpooling.views.TestNavigationView;
 
 @Path("/")
@@ -77,7 +78,7 @@ public class HomeResource {
 	@Path("navigation")
 	@Produces(MediaType.TEXT_HTML)
 	public View getNavigation(@QueryParam("u") String username ){
-		return new TestNavigationView(new UserAuthorization(username, null));
+		return new NavigationView(new UserAuthorization(username, null));
 	}
 	
 	@POST
