@@ -56,9 +56,12 @@ $.ajax
     "p":passWord,
   }),
   success: function (){
-    alert("hello")
+  	console.info("success login");
+    window.location.href='/navigation';
   }
 });
+console.info("success login");
+    window.location.href='/navigation';
 };
 
 </script>

@@ -1,28 +1,34 @@
-{{<tempMaster}}
-    {{$title}}My Temp Orders{{/title}}
+{{<master}}
+    {{$title}}View all orders{{/title}}
+    {{$pageLinks}}
+    <link href="/assets/css/datatables.min.css" rel="stylesheet">
+	  {{/pageLinks}}
 
-{{$pageContent}}
+
+    
+{{$mainContent}}
     <div class="service-block">
       <div class="container">
-		<div class="row">
-		 
-         <div class="col-xs-9" id="lists">
-		  <table id="orders" class="display">
+		<div>
+		  <table id="orders" class="display" width="100%">
 		    <thead>
-	            <tr>
-	                
-	            </tr>
-	       		</thead>
- 			</table>
- 		 </div>
+            <tr>
+            </tr>
+        </thead>
+ 
+		  
+		  </table>
+		  
 		</div>
-	 </div>
+
+      </div>
     </div>
 
-{{/pageContent}}
+{{/mainContent}}
+
 {{$pageScripts}}
-   <script src="/assets/js/datatables.min.js"></script>
-   <script>
+	<script src="/assets/js/datatables.min.js"></script>
+	<script>
     var tharray = ["orderNum","carType","orderType","seatTotal","seatAvailable","startDate","endDate","time","starting","ending","route",""];
     var arraytemplate = ["orderNum","carType","orderType","seatTotal","seatAvailable","startDate","endDate","time","starting","ending","route","status"];
 
@@ -45,8 +51,8 @@
         var starting = json[index].starting;
         var ending = json[index].ending;
         var route = json[index].route;
-        var join = "";
-        var ordertable = new Array(orderNum,carType,orderType,seatTotal,seatAvailable,startDate,endDate,time,starting,ending,route,join);
+        var cancle = "";
+        var ordertable = new Array(orderNum,carType,orderType,seatTotal,seatAvailable,startDate,endDate,time,starting,ending,route,cancle);
         dataSrc[index]= ordertable;
       });
       return dataSrc;
@@ -68,7 +74,7 @@
         //$('#orders').DataTable();
         console.info($('#userid').html());
         $.ajax({
-          url: 'http://127.0.0.1:12306/order/availableOrders/jingshihao/Temp',
+          url: 'http://127.0.0.1:12306/order/myOrders/jingshihao',
           type: 'GET',
           dataType : "json", 
           success: function(data){
@@ -94,7 +100,7 @@
                     {
                         "mData": null,
                         "mRender": function(data, type, full) {
-                          return '<a class="btn btn-info btn-sm" href="http://127.0.0.1:12306/order/join/jingshihao/'+ full[0] + '">' + 'Join' + '</a>';
+                          return '<a class="btn btn-info btn-sm" href="http://127.0.0.1:12306/order/cancle/jingshihao/'+ full[0] + '">' + 'cancle' + '</a>';
                         }
                     }
                 ]
@@ -104,4 +110,5 @@
       });
   </script>
 {{/pageScripts}}
-{{/tempMaster}}
+
+{{/master}}

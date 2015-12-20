@@ -60,11 +60,18 @@ public class HomeResource {
 		return Response.temporaryRedirect(URI.create(redirectUrl)).build();		
 	}
 	
+	@GET
+	@Path("navigation")
+	@Produces(MediaType.TEXT_HTML)
+	public View getNavigationView( UserAuthorization authorization){
+		return new NavigationView(null);
+	}
+	
 	
 	@GET
 	@Path("signin")
 	@Produces(MediaType.TEXT_HTML)
-	public View getLoginView( UserAuthorization authorization){
+	public View getLoginView(){
 		return new LoginView();
 	}
 		
