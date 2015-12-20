@@ -61,9 +61,6 @@ $.ajax
   url: "http://127.0.0.1:12306/login",
   dataType: 'json',
   async: false,
-  beforeSend: function(xhr) {
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(userName + ":" + passWord));
-  },
   data: JSON.stringify({
     "u":userName,
     "p":passWord,

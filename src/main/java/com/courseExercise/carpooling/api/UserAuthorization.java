@@ -6,22 +6,21 @@ import javax.security.auth.Subject;
 
 public class UserAuthorization implements Principal {
 	
-
+	private LoginToken token;
 	private final String username;
-	private final String password;
 
-	public UserAuthorization(String username, String password)
+	public UserAuthorization(LoginToken token, String username)
 	{
 		this.username = username;
-		this.password = password;
+		this.token = token;
 	}
 
 	public String getUsername() {
 		return username;
 	}
 
-	public String getPassword() {
-		return password;
+	public LoginToken getToken() {
+		return token;
 	}
 
 	public boolean implies(Subject arg0) {

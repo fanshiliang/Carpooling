@@ -12,7 +12,6 @@ import com.google.common.collect.Sets;;
 
 public class AuthServiceImpl implements AuthService<LoginToken>{
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(AuthServiceImpl.class);
 	
 	private final ClientServiceImpl clientService;
 	
@@ -49,7 +48,7 @@ public class AuthServiceImpl implements AuthService<LoginToken>{
 		if(authorization != null){
 			return authorization;
 		}
-		//authorization = new UserAuthorization(token, userId, token.getUserName());
+		authorization = new UserAuthorization(token, userId);
 		
 		authorizationCache.put(userId, authorization);
 		return authorization;

@@ -11,14 +11,14 @@ import io.dropwizard.auth.basic.BasicCredentials;
 import com.google.common.base.Optional;
 
 public class SimpleAuthenticator implements Authenticator<BasicCredentials, UserAuthorization> {
-	MyDAO myDAO;
+	private MyDAO myDAO;
 	
 	public SimpleAuthenticator(MyDAO userDao) {this.myDAO = userDao;}
 	
     @Override
     public Optional<UserAuthorization> authenticate(BasicCredentials credentials) throws AuthenticationException    
     {
-    	
+    	System.out.println("enter authorization");
    		if (myDAO.getPassword(credentials.getUsername()).equals(credentials.getPassword())) {
               return Optional.of(new UserAuthorization(credentials.getUsername(), credentials.getPassword()));
         }
