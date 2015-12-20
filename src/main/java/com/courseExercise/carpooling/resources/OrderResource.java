@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.courseExercise.carpooling.core.Order;
 import com.courseExercise.carpooling.db.MyDAO;
+import com.courseExercise.carpooling.views.MyOrdersView;
 import com.google.common.base.Charsets;
 
 @Path("/order")
@@ -47,13 +48,25 @@ public class OrderResource {
 	@GET
 	@Produces("application/json")
 	public List<Order> findAvailableTempOrders(@PathParam("id") String id, @PathParam("orderType") String orderType) {
-		return myDAO.findAvailableOders(id, orderType);
+		List<Order> possibleOrders = myDAO.findAvailableOders(id, orderType);
+		List<Order> ongoingOrders = myDAO.findUserOngoingOrder(id);
+		if(ongoingOrders.size() == 0) return possibleOrders;
+		for(int i = 0; i < possibleOrders.size(); i ++){
+			Order possible = possibleOrders.get(i);
+			for(Order ongoing: ongoingOrders){
+				if(!compareTime(possible.getTime(), ongoing.getTime())){
+					possibleOrders.remove(i);
+					break;
+				}	
+			}
+		}
+		return possibleOrders;
 	}
 
 	@Path("/raiseOrder")
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_HTML)
 	public View raiseOrder(@FormParam("carType") String carType,
 			@FormParam("orderType") String orderType,
 			@FormParam("startDate") Date startDate, @FormParam("endDate") Date endDate, @FormParam("time") String time, 
@@ -106,11 +119,11 @@ public class OrderResource {
 	
 	@Path("/cancle/{id}/{orderNum}")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Order> cancelOrder(@PathParam("id") String id, @PathParam("orderNum") int orderNum){
+	@Produces(MediaType.TEXT_HTML)
+	public View cancelOrder(@PathParam("id") String id, @PathParam("orderNum") int orderNum){
 		myDAO.cancleOrder(id, orderNum);
 		myDAO.addSeatsAvaible(orderNum);
-		return myDAO.findAllUserOrders(id);		
+		return new MyOrdersView(null);		
 	}
 
 	public class OrderList {

@@ -75,6 +75,7 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
 
         bootstrap.addCommand(new RenderCommand());
         bootstrap.addBundle(new AssetsBundle());
+       // bootstrap.addBundle(new AssetsBundle("src/main/resources/assets","/carpooling"));
         bootstrap.addBundle(new MigrationsBundle<CarpoolingConfiguration>() {
             @Override
             public DataSourceFactory getDataSourceFactory(CarpoolingConfiguration configuration) {

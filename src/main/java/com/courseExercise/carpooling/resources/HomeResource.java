@@ -36,6 +36,7 @@ import com.courseExercise.carpooling.api.CookieToken;
 import com.courseExercise.carpooling.auth.AuthServiceImpl;
 
 import com.courseExercise.carpooling.views.LoginView;
+import com.courseExercise.carpooling.views.NavigationView;
 
 
 @Path("/")
@@ -60,6 +61,13 @@ public class HomeResource {
 			redirectUrl = "/signin";
 		}
 		return Response.temporaryRedirect(URI.create(redirectUrl)).build();		
+	}
+	
+	@GET
+	@Path("navigation")
+	@Produces(MediaType.TEXT_HTML)
+	public View getNavigationView( UserAuthorization authorization){
+		return new NavigationView(null);
 	}
 	
 	

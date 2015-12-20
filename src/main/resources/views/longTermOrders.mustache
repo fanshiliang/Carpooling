@@ -1,28 +1,35 @@
-{{<tempMaster}}
-    {{$title}}My Temp Orders{{/title}}
+{{<master}}
+    {{$title}}View all Long Term orders{{/title}}
+    {{$pageLinks}}
+    <link href="/assets/css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="/assets/css/datatables.min.css" rel="stylesheet">
+	  {{/pageLinks}}
 
-{{$pageContent}}
+
+    
+{{$mainContent}}
     <div class="service-block">
       <div class="container">
-		<div class="row">
-		 
-         <div class="col-xs-9" id="lists">
-		  <table id="orders" class="display">
+		<div>
+		  <table id="orders" class="display" width="100%">
 		    <thead>
-	            <tr>
-	                
-	            </tr>
-	       		</thead>
- 			</table>
- 		 </div>
+            <tr>
+            </tr>
+        </thead>
+ 
+		  
+		  </table>
+		  
 		</div>
-	 </div>
+
+      </div>
     </div>
 
-{{/pageContent}}
+{{/mainContent}}
+
 {{$pageScripts}}
-   <script src="/assets/js/datatables.min.js"></script>
-   <script>
+	<script src="/assets/js/datatables.min.js"></script>
+	<script>
     var tharray = ["orderNum","carType","orderType","seatTotal","seatAvailable","startDate","endDate","time","starting","ending","route",""];
     var arraytemplate = ["orderNum","carType","orderType","seatTotal","seatAvailable","startDate","endDate","time","starting","ending","route","status"];
 
@@ -68,7 +75,7 @@
         //$('#orders').DataTable();
         console.info($('#userid').html());
         $.ajax({
-          url: 'http://127.0.0.1:12306/order/availableOrders/jingshihao/Temp',
+          url: 'http://127.0.0.1:12306/order/availableOrders/jingshihao/Long',
           type: 'GET',
           dataType : "json", 
           success: function(data){
@@ -104,4 +111,5 @@
       });
   </script>
 {{/pageScripts}}
-{{/tempMaster}}
+
+{{/master}}
