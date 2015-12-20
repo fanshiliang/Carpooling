@@ -8,8 +8,8 @@
     <meta name="author" content="Rickie">
     <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="../../favicon.ico">
-    {{$links}}
-    {{/links}}
+    {{$pageLinks}}
+    {{/pageLinks}}
     <title>
       {{$title}}Navigation to Carpooling{{/title}}
     </title>
@@ -19,86 +19,86 @@
   .service-block{margin-top: 60px;}
 	.banner-under-nav{text-align: center;}
   </style>
-  {{$style}}
-  {{/style}}
+  {{$pageStyle}}
+  {{/pageStyle}}
   <body>
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-          data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">
-              Toggle navigation
-            </span>
-            <span class="icon-bar">
-            </span>
-            <span class="icon-bar">
-            </span>
-            <span class="icon-bar">
-            </span>
-          </button>
-          <a class="navbar-brand" href="#">
-            Carpooling
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+      data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">
+          Toggle navigation
+        </span>
+        <span class="icon-bar">
+        </span>
+        <span class="icon-bar">
+        </span>
+        <span class="icon-bar">
+        </span>
+      </button>
+      <a class="navbar-brand" href="#">
+        Carpooling
+      </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="/navigation">
+            Home
           </a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="/navigation">
-                Home
+        </li>
+        <li>
+          <a href="#about">
+            About
+          </a>
+        </li>
+        <li>
+          <a href="#contact">
+            Contact
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+          aria-haspopup="true" aria-expanded="false">
+            Options
+            <span class="caret">
+            </span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="/register">
+                Sign up
+              </a>
+            </li>
+            <li role="separator" class="divider">
+            </li>
+            <li class="dropdown-header" href="/choose">
+              Services
+            </li>
+            <li>
+              <a href="/longterm">
+                Long term
               </a>
             </li>
             <li>
-              <a href="#about">
-                About
+              <a href="/temp">
+                Temporary
               </a>
             </li>
-            <li>
-              <a href="#contact">
-                Contact
-              </a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-              aria-haspopup="true" aria-expanded="false">
-                Options
-                <span class="caret">
-                </span>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="/register">
-                    Sign up
-                  </a>
-                </li>
-                <li role="separator" class="divider">
-                </li>
-                <li class="dropdown-header" href="/choose">
-                  Services
-                </li>
-                <li>
-                  <a href="/longterm">
-                    Long term
-                  </a>
-                </li>
-                <li>
-                  <a href="/temp">
-                    Temporary
-                  </a>
-                </li>
-              </ul>
-            </li>
-			<li>
-                  <a href="#">
-                    {{username}}
-                  </a>
-                </li>
           </ul>
-        </div>
-      </div>
-    </nav>
+        </li>
+        <li>
+          <a id="userid" href="/myOrders">
+            {{username}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
     {{$mainContent}}{{/mainContent}}
 
     
@@ -110,9 +110,9 @@
     </footer>
   <script src="../../assets/js/jquery.min.js"></script>
   <script src="../../assets/js/bootstrap.min.js"></script>
-  {{$scripts}}
+  {{$pageScripts}}
 	
-	{{/scripts}}
+	{{/pageScripts}}
 
 
   </body>
