@@ -32,6 +32,7 @@ import com.courseExercise.carpooling.api.UserAuthorization;
 import com.courseExercise.carpooling.CarpoolingApplication;
 import com.courseExercise.carpooling.api.CookieToken;
 import com.courseExercise.carpooling.auth.AuthService;
+import com.courseExercise.carpooling.auth.AuthServiceImpl;
 import com.courseExercise.carpooling.auth.BasicAuthService;
 import com.courseExercise.carpooling.auth.SimpleAuthenticator;
 import com.courseExercise.carpooling.views.LoginView;
@@ -42,11 +43,11 @@ import com.courseExercise.carpooling.views.TestNavigationView;
 public class HomeResource {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeResource.class);
 	
-	BasicAuthService authenticator;
+	AuthServiceImpl authService;
 	
 	@Inject
-	public HomeResource(BasicAuthService authenticator){
-		this.authenticator = authenticator;
+	public HomeResource(AuthServiceImpl authService){
+		this.authService = authService;
 	}
 	
 	@GET
@@ -73,38 +74,20 @@ public class HomeResource {
 	public View getLoginView( UserAuthorization authorization){
 		return new LoginView();
 	}
-	
-	@GET
-	@Path("navigation")
-	@Produces(MediaType.TEXT_HTML)
-	public View getNavigation(@QueryParam("u") String username ){
-		return new NavigationView(new UserAuthorization(username, null));
-	}
-	
-	@POST
-	@Path("login")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Optional<LoginResult> Valid( LoginRequest request) throws AuthenticationException{
-		Optional<LoginResult> res = authenticator.authenticate(request);
-		return res;
-	}
-	
+		
 	@POST
 	@Path("signin")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(@Valid LoginRequest loginRequest){
-		return Response.ok().build();
-				//cookie(getCookies((CookieToken) authService.authenticate(loginRequest.getUserId(), loginRequest.getPassword()),false)).build();
+		return Response.ok().cookie(getCookies((CookieToken) authService.authenticate(loginRequest.getUserId(), loginRequest.getPassword()),false)).build();
 	}
 	
 	@POST
 	@Path("logout")
 	@Produces(MediaType.TEXT_HTML)
 	public Response logout(@Auth UserAuthorization authorization){
-		return Response.ok().build();
-				//cookie(getCookies(authorization.getToken(),true)).build();
+		return Response.ok().cookie(getCookies(authorization.getToken(),true)).build();
 	}
 	
 	private NewCookie[] getCookies(CookieToken token, boolean delete){

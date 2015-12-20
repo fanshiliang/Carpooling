@@ -10,37 +10,25 @@ import com.courseExercise.carpooling.LoginConfiguration;
 import com.courseExercise.carpooling.ServerConfiguration;
 import com.courseExercise.carpooling.api.DBResponse;
 import com.courseExercise.carpooling.api.LoginToken;
+import com.courseExercise.carpooling.api.UserAuthorization;
 import com.courseExercise.carpooling.exceptions.ApplicationException;
+import com.courseExercise.carpooling.db.MyDAO;
 import com.google.common.base.Optional;
 import com.google.common.net.HttpHeaders;
 public class ClientServiceImpl {
 	
-	private final Client client;
-	private UriBuilder loginUri;
+	private MyDAO myDao;
 	
-	public ClientServiceImpl(Client client, LoginConfiguration loginConfig){
-		this.client = client;
-		ServerConfiguration c = loginConfig.getLoginServer();
-		this.loginUri = UriBuilder.fromUri(loginConfig.getLoginUriTemplate()).scheme(c.getSchema()).host(c.getHost()).port(c.getPort());
+	public ClientServiceImpl(MyDAO myDao){
+		this.myDao = myDao;
 	}
 	
 	public LoginToken authenticateUser(String userId, String password){
-		UriBuilder uriBuilder = loginUri.clone().replaceQueryParam("LOGIN_ID", userId).replaceQueryParam("PASSWORD", password);
-		DBResponse response = DBRequest(uriBuilder);
-		if(response.getAuthCred() != null){
-			return LoginToken.newToken(response);
+		if (this.myDao.getPassword(userId).equals(password)) {
+			return LoginToken.newToken(userId);
 		}
 		else
 			throw ApplicationException.UNAUTHORIZED;
 	}
 	
-	private DBResponse DBRequest(UriBuilder uriBuilder){
-		DBResponse oResponse = null;
-		try{
-			oResponse = client.target(uriBuilder).request().header(HttpHeaders.CACHE_CONTROL, "no-cache").accept(MediaType.APPLICATION_JSON).buildGet().invoke(DBResponse.class);
-		} catch(ProcessingException | WebApplicationException e){
-			throw ApplicationException.BAD_GATEWAY;
-		}
-		return oResponse;
-	}
 }
