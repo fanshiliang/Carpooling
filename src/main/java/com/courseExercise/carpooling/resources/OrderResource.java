@@ -57,17 +57,15 @@ public class OrderResource {
 	public View raiseOrder(@FormParam("carType") String carType,
 			@FormParam("orderType") String orderType,
 			@FormParam("startDate") Date startDate, @FormParam("endDate") Date endDate, @FormParam("time") String time, 
-			@FormParam("totalSeats") String seatTotal,
-			@FormParam("availableSeats") String seatAvailable,
+			@FormParam("seatTotal") String seatTotal,
+			@FormParam("seatAvailable") String seatAvailable,
 			@FormParam("route") String route,
 			@FormParam("starting") String starting,
 			@FormParam("ending") String ending, @FormParam("id") String id) {
 
 		newOrderNum++;
-		int totalSeats = Integer.parseInt(seatTotal);
-		int availableSeats = Integer.parseInt(seatAvailable);
 		String status = "ongoing";
-		myDAO.insertTempOrder(newOrderNum, orderType, carType, totalSeats, availableSeats,
+		myDAO.insertTempOrder(newOrderNum, orderType, carType, Integer.parseInt(seatTotal), Integer.parseInt(seatAvailable),
 				startDate, endDate, Time.valueOf(time), starting, ending, route, status);
 		myDAO.insertUserOrder(id, newOrderNum);
 		return new View("/views/tempCarpooling/myTempOrders.mustache", Charsets.UTF_8) {
