@@ -61,7 +61,7 @@ public class HomeResource {
 	@Path("testNavigation")
 	@Produces(MediaType.TEXT_HTML)
 	public View testNaviation( UserAuthorization authorization){
-		return new TestNavigationView();		
+		return new TestNavigationView(authorization);		
 	}
 	
 	
@@ -70,6 +70,13 @@ public class HomeResource {
 	@Produces(MediaType.TEXT_HTML)
 	public View getLoginView( UserAuthorization authorization){
 		return new LoginView();
+	}
+	
+	@GET
+	@Path("navigation")
+	@Produces(MediaType.TEXT_HTML)
+	public View getNavigation(@Auth UserAuthorization authorization){
+		return new TestNavigationView(authorization);
 	}
 	
 	@POST

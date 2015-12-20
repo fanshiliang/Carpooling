@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Rickie">
-    {{$links}}
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="../../favicon.ico">
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    {{$links}}
     {{/links}}
     <title>
       {{$title}}Navigation to Carpooling{{/title}}
@@ -16,9 +16,11 @@
     
   </head>
   <style>
-    .service-block{margin-top: 60px;}
+  .service-block{margin-top: 60px;}
 	.banner-under-nav{text-align: center;}
   </style>
+  {{$style}}
+  {{/style}}
   <body>
 
     <!-- Fixed navbar -->
@@ -44,7 +46,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active">
-              <a href="#">
+              <a href="/navigation">
                 Home
               </a>
             </li>
@@ -67,22 +69,22 @@
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="#">
+                  <a href="/register">
                     Sign up
                   </a>
                 </li>
                 <li role="separator" class="divider">
                 </li>
-                <li class="dropdown-header">
+                <li class="dropdown-header" href="/choose">
                   Services
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="/longterm">
                     Long term
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="/temp">
                     Temporary
                   </a>
                 </li>
@@ -103,23 +105,15 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="text-muted">This is the footer of the page</p>
+        <p class="text-muted">Carpooling for your daily convenience</p>
       </div>
     </footer>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    {{$scripts}}
-	<script src="../dist/js/jquery.min.js"></script>
-    <script src="../dist/js/bootstrap.min.js"></script>
+  <script src="../../assets/js/jquery.min.js"></script>
+  <script src="../../assets/js/bootstrap.min.js"></script>
+  {{$scripts}}
+	
 	{{/scripts}}
-	<!-- data required : 
-	  {{user}}
-	  link: longterm carpooling -- start
-	  link: temperory carpooling -- start
-	-->
+
 
   </body>
 
