@@ -101,6 +101,9 @@ public interface MyDAO {
 	@SqlQuery("select MAX(orderNum) from orders")
 	int findMaxOrderNum();
 	
+	@SqlUpdate("UPDATE orders set status = 'completed' where endDate < curdate()")
+	void updateOrderStatus();
+	
 	// find time of all ongoing orders
 	@SqlQuery("SELECT * FROM orders WHERE ( ( startDate > curdate() or (startDate = curdate() and time > curtime())) or (orderType='Long' and endDate > curdate()) ) and orderNum IN (SELECT orderNum FROM user_orders WHERE id = :id)")
 	@Mapper(OrderMapper.class)
