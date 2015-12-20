@@ -1,108 +1,13 @@
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- <link rel="icon" href="../../favicon.ico"> -->
-	
-    <title>Carpooling</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
-  	<link href="../../assets/css/dataTables.bootstrap.min.css" rel="stylesheet">
+{{$tempMaster}}
+    {{$title}}View all temp orders{{/title}}
+    {{$pageLinks}}
   	<link href="../../assets/css/jquery.dataTables.min.css" rel="stylesheet">
-	
-    <!-- Custom styles for this template -->
     <link href="sticky-footer-navbar.css" rel="stylesheet">
-	
+	  {{/pageLinks}}
 
-  </head>
-  <style>
-    .service-block{margin-top: 60px;}
-	.banner-under-nav{text-align: center;}
-  </style>
-  <body>
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-          data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">
-              Toggle navigation
-            </span>
-            <span class="icon-bar">
-            </span>
-            <span class="icon-bar">
-            </span>
-            <span class="icon-bar">
-            </span>
-          </button>
-          <a class="navbar-brand" href="/navigation">
-            Carpooling
-          </a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="/Carpooling">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/Carpooling/myOrders">
-                	我的拼车
-              </a>
-            </li>
-            <li>
-              <a href="#contact">
-                Contact
-              </a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-              aria-haspopup="true" aria-expanded="false">
-                Options
-                <span class="caret">
-                </span>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#">
-                    Sign up
-                  </a>
-                </li>
-                <li role="separator" class="divider">
-                </li>
-                <li class="dropdown-header">
-                  Services
-                </li>
-                <li>
-                  <a href="#">
-                    Long term
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Temporary
-                  </a>
-                </li>
-              </ul>
-            </li>
-			<li>
-                  <a href="#">
-                    {{user}}
-                  </a>
-                </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
+    
+{{$pageContent}}
     <div class="service-block">
       <div class="container">
 		<div>
@@ -120,28 +25,16 @@
       </div>
     </div>
 
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">This is the footer of the page</p>
-      </div>
-    </footer>
+{{/pageContent}}
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-	
-	<script src="../../assets/js/jquery.min.js"></script>
+{{$pageScripts}}
 	<script src="../../assets/js/jquery.dataTables.min.js"></script>
 	<script src="../../assets/js/dataTables.bootstrap.min.js"></script>
-  <script src="../../assets/js/bootstrap.min.js"></script>
-	
-	
 	<script>
-    var tharray = ["orderNum","carType","orderType","seatTotal","seatAvailable","startDate","endDate","time","starting","ending","route","status"];
+    var tharray = ["orderNum","carType","orderType","totalSeats","availableSeats","startDate","endDate","time","starting","ending","route"];
     var arraytemplate = ["orderNum","carType","orderType","seatTotal","seatAvailable","startDate","endDate","time","starting","ending","route","status"];
 
-  //define a template
+    //define a template
     //add to one array
     // array add to array
     //transform json to 2D array 
@@ -152,16 +45,15 @@
         var orderNum = json[index].orderNum;
         var carType = json[index].carType;
         var orderType = json[index].orderType;
-        var seatTotal = json[index].seatTotal;
-        var seatAvailable = json[index].seatAvailable;
+        var seatTotal = json[index].totalSeats;
+        var seatAvailable = json[index].availableSeats;
         var startDate = json[index].startDate;
         var endDate = json[index].endDate;
         var time = json[index].time;
         var starting = json[index].starting;
         var ending = json[index].ending;
         var route = json[index].route;
-        var status = json[index].status;
-        var ordertable = new Array(orderNum,carType,seatTotal,seatAvailable,date,time,route,starting,ending);
+        var ordertable = new Array(orderNum,carType,orderType,totalSeats,availableSeats,startDate,endDate,time,starting,ending,route);
         dataSrc[index]= ordertable;
       });
       return dataSrc;
@@ -176,64 +68,34 @@
       });
     }
 
-    function jToArray(dataSet,arraytemplate){
-      var json = eval(dataSet);
-      var dataSrc = new Array();
-      $.each(json,function(index,item){
-        $.each(json[index],function(i,val){
-
-        });
-      });
-    }
-
-
-
     	$(document).ready(function() {
     		// initiate dataTables 
     		$('#orders').DataTable();
     			console.info("before ajax");
     			$.ajax({
-    				url: 'http://127.0.0.1:12306/order/all',
+    				url: 'http://127.0.0.1:12306/'+$('#username').html()+'/Temp',
     				type: 'GET',
     				dataType : "json", 
     				success: function(data){
     					var dataSrc = jsonToArray(data);
-    					$('#orders').DataTable({
-    						// destroy the table to refresh
-    						destroy: true,
-    						
-    						// bind the table data with the array
-    						data: dataSrc,
-    						
-    						// define the columns
-    						columns: [
-    							{ title: "orderNum" },
-    							{ title: "carType" },
-    							{ title: "seatTotal" },
-    							{ title: "seatAvailable" },
-    							{ title: "date" },
-    							{ title: "time" },
-    							{ title: "route" },
-    							{ title: "starting" },
-    							{ title: "ending" },
-    							{ "data": null,defaultContent: '<a class="btn btn-default" href="#" role="button">Join</a>', orderable: false }, 
-    						]// use data to decide each click function to join
-    					});
-
     				  $('#orders').dataTable({
                   "destroy" : true,
                   "data":"dataSrc",
                   "aoColumns": [
-                      { "mData": null },
                       { "mData": },
-                      { "mData":  },
-                      { "mData":  },
                       { "mData": },
-                      { "mData":  },
+                      { "mData": },
+                      { "mData": },
+                      { "mData": },
+                      { "mData": },
+                      { "mData": },
+                      { "mData": },
+                      { "mData": },
+                      { "mData": },
                       {
                           "mData": null,
                          "mRender": function(data, type, full) {
-                            return '<a class="btn btn-info btn-sm" href="/order/joinorder/' + full[0] + '">' + 'Join' + '</a>';
+                            return '<a class="btn btn-info btn-sm" href="/join/' +$('#username').html()+'/'+ full[0] + '">' + 'Join' + '</a>';
                           }
                       }
                   ]
@@ -243,17 +105,6 @@
 
     	} );
 	</script>
-	<script>
-    
-	</script>
-	<script>
-	
-	</script>
-	<!-- data required : 
-	  {{user}}
-	  link: longterm carpooling -- start
-	  
-	-->
+{{/pageScripts}}
 
-  </body>
-</html>
+{{/tempMaster}}

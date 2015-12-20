@@ -1,6 +1,10 @@
 package com.courseExercise.carpooling.resources;
 
 import io.dropwizard.views.View;
+
+import com.courseExercise.carpooling.api.UserAuthorization;
+import com.courseExercise.carpooling.views.NavigationView;
+import com.courseExercise.carpooling.views.TempCarpoolingView;
 import com.google.common.base.Charsets;
 
 import javax.ws.rs.*;
@@ -12,16 +16,24 @@ public class CarPoolingViewResource {
 
 	}
 
-	@Produces(MediaType.TEXT_HTML)
+//	@Produces(MediaType.TEXT_HTML)
+//	@GET
+//	@Path("/tempCarpooling")
+//	public View getTempIndexView() {
+//		return new View("/views/tempCarpooling/tempCarPooling.mustache", Charsets.UTF_8) {
+//		};
+//	}
+	
 	@GET
-	public View getTempIndexView() {
-		return new View("/views/tempCarpooling/tempCarPooling.mustache", Charsets.UTF_8) {
-		};
+	@Path("/tempCarpooling")
+	@Produces(MediaType.TEXT_HTML)
+	public View getTempCarpoolingView(){
+		return new TempCarpoolingView(null);
 	}
 
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	@Path("/TemporaryCarpooling")
+	@Path("/raiseTempOrder")
 	public View getRaiseTempOrderView() {
 		return new View("/views/tempCarpooling/raiseTempOrder.mustache", Charsets.UTF_8) {
 		};
@@ -29,7 +41,7 @@ public class CarPoolingViewResource {
 	
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	@Path("/LongtermCarpooling")
+	@Path("/longTerm")
 	public View getRaiseLongOrderView() {
 		return new View("/views/tempCarpooling/raiseTempOrder.mustache", Charsets.UTF_8) {
 		};

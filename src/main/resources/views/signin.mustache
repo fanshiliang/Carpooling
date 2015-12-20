@@ -1,27 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Rickie">
-    <link rel="icon" href="../../favicon.ico">
-    <title>
-      Sign in for carpooling
-    </title>
-    <!-- Bootstrap core CSS -->
-    <!-- access from http resolves to this -->
+{{<master}}
+ 
+      {{$title}}Sign in for carpooling{{/title}}
 
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+
+    {{$pageLinks}}
     <link href="../assets/css/signin.css" rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="../assets/js/bootstrap.js"></script>
+    {{/pageLinks}}
 
-  </head>
-  
-  <body>
+    {{$mainContent}}
     <div class="container">
       <form class="form-signin" action="javascript:valid()" method="post">
         <h2 class="form-signin-heading">
@@ -43,9 +29,8 @@
       </form>
 
     </div>
-  </body>
-
-</html>
+{{/mainContent}}
+{{$pageScripts}}
 <script>
 function valid(){
 var userName = document.getElementById("inputUsername").value;
@@ -58,6 +43,7 @@ $.ajax
 ({
   type: "POST",
   contentType: "application/json; charset=utf-8",
+
   beforeSend: function(xhr) {
     xhr.setRequestHeader("Authorization", "Basic " + btoa(userName + ":" + passWord));
   },
@@ -74,3 +60,5 @@ $.ajax
 };
 
 </script>
+{{/pageScripts}}
+{{/master}}
