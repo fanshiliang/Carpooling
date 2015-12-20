@@ -79,7 +79,7 @@ public class OrderResource {
 		myDAO.insertTempOrder(newOrderNum, orderType, carType, Integer.parseInt(seatTotal), Integer.parseInt(seatAvailable),
 				startDate, endDate, Time.valueOf(time), starting, ending, route, status);
 		myDAO.insertUserOrder(id, newOrderNum);
-		return new MyOrdersView();
+		return new MyOrdersView(null);
 	}
 
 	@Path("/myOrders/{id}")
@@ -103,7 +103,7 @@ public class OrderResource {
 			@PathParam("orderNum") int orderNum) {
 		myDAO.insertUserOrder(id, orderNum);
 		myDAO.subTractSeatsAvaible(orderNum);
-		return new MyOrdersView();
+		return new MyOrdersView(null);
 	}
 	
 	@Path("/cancle/{id}/{orderNum}")
