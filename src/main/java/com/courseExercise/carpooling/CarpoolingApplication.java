@@ -5,7 +5,9 @@ import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
 
 import com.courseExercise.carpooling.api.UserAuthorization;
+import com.courseExercise.carpooling.auth.AuthServiceImpl;
 import com.courseExercise.carpooling.auth.BasicAuthService;
+import com.courseExercise.carpooling.auth.ClientServiceImpl;
 import com.courseExercise.carpooling.auth.SimpleAuthenticator;
 import com.courseExercise.carpooling.auth.SimpleAuthorizer;
 import com.courseExercise.carpooling.core.*;
@@ -115,12 +117,12 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
         environment.jersey().register(new OrderResource(myDAO));
         environment.jersey().register(new SignIn());
         environment.jersey().register(new CarPoolingViewResource());
-        environment.jersey().register(new HomeResource(new BasicAuthService(myDAO)));
-        environment.jersey().register(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<UserAuthorization>()
-                .setAuthenticator(new SimpleAuthenticator(myDAO))
-                .setAuthorizer(new SimpleAuthorizer())
-                .setRealm("SUPER SECRET STUFF")
-                .buildAuthFilter()));
+        environment.jersey().register(new HomeResource(new AuthServiceImpl(6*60*60, new ClientServiceImpl(myDAO))));
+//        environment.jersey().register(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<UserAuthorization>()
+//                .setAuthenticator(new SimpleAuthenticator(myDAO))
+//                .setAuthorizer(new SimpleAuthorizer())
+//                .setRealm("SUPER SECRET STUFF")
+//                .buildAuthFilter()));
         configureCors(environment);
 
 
