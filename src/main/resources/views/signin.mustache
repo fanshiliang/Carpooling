@@ -49,7 +49,7 @@
 <script>
 function valid(){
 var userName = document.getElementById("inputUsername").value;
-var passWord = document.getElementById("inputPassword").value
+var passWord = document.getElementById("inputPassword").value;
 var sendInfo = {
            username: userName,
            password: passWord
@@ -61,15 +61,15 @@ $.ajax
   url: "http://127.0.0.1:12306/login",
   dataType: 'json',
   async: false,
-  headers: {
-    "Authorization": "Basic " + btoa(userName + ":" + passWord)
+  beforeSend: function(xhr) {
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(userName + ":" + passWord));
   },
   data: JSON.stringify({
     "u":userName,
     "p":passWord,
   }),
   success: function (){
-    alert('Thanks for your comment!'); 
+    window.location.href="http://127.0.0.1:12306/navigation?u="+userName;
   }
 });
 };
