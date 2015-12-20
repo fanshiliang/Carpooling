@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -18,6 +20,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
@@ -28,12 +31,14 @@ import org.slf4j.LoggerFactory;
 
 import com.courseExercise.carpooling.api.LoginRequest;
 import com.courseExercise.carpooling.api.LoginResult;
+import com.courseExercise.carpooling.api.LoginToken;
 import com.courseExercise.carpooling.api.UserAuthorization;
 import com.courseExercise.carpooling.CarpoolingApplication;
 import com.courseExercise.carpooling.api.CookieToken;
 import com.courseExercise.carpooling.auth.AuthService;
 import com.courseExercise.carpooling.auth.AuthServiceImpl;
 import com.courseExercise.carpooling.auth.BasicAuthService;
+import com.courseExercise.carpooling.auth.CookieAuthenticator;
 import com.courseExercise.carpooling.auth.SimpleAuthenticator;
 import com.courseExercise.carpooling.views.LoginView;
 import com.courseExercise.carpooling.views.NavigationView;
@@ -43,18 +48,21 @@ import com.courseExercise.carpooling.views.TestNavigationView;
 public class HomeResource {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeResource.class);
 	
-	AuthServiceImpl authService;
+	private final AuthServiceImpl authService;
 	
 	@Inject
 	public HomeResource(AuthServiceImpl authService){
 		this.authService = authService;
 	}
-	
+
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	public  Response getView(UserAuthorization authorization){
-		String redirectUrl = "/signin";
-		if(authorization != null){
+	public  Response getView(@Context HttpServletRequest request){
+		LoginToken token = new LoginToken(request.getCookies());
+		String redirectUrl;
+		if(token != null && (token = authService.verifyAuthentication(token))!=null){
+			redirectUrl = "/signin";
+		}else{
 			redirectUrl ="/navigation";
 		}
 		return Response.temporaryRedirect(URI.create(redirectUrl)).build();		
@@ -64,7 +72,7 @@ public class HomeResource {
 	@GET
 	@Path("signin")
 	@Produces(MediaType.TEXT_HTML)
-	public View getLoginView( UserAuthorization authorization){
+	public View getLoginView(){
 		return new LoginView();
 	}
 		

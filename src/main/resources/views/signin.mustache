@@ -62,14 +62,13 @@ $.ajax
     xhr.setRequestHeader("Authorization", "Basic " + btoa(userName + ":" + passWord));
   },
   url: "http://127.0.0.1:12306/login",
-  dataType: 'json',
   async: false,
   data: JSON.stringify({
     "u":userName,
     "p":passWord,
   }),
   success: function (){
-    alert("hello")
+    window.location.href = "/"
   }
 });
 };
