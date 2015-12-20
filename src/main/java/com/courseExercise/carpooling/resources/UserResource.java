@@ -1,5 +1,7 @@
 package com.courseExercise.carpooling.resources;
 
+import io.dropwizard.views.View;
+
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -13,8 +15,11 @@ import javax.ws.rs.core.MediaType;
 
 
 
+
+
 import com.courseExercise.carpooling.core.User;
 import com.courseExercise.carpooling.db.MyDAO;
+import com.courseExercise.carpooling.views.LoginView;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Path("/user")
@@ -117,8 +122,8 @@ public class UserResource {
 	@Path("/register")
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
-	@Produces(MediaType.APPLICATION_JSON)
-	public RegisterResult registUser(@FormParam("id") String id,
+	@Produces(MediaType.TEXT_HTML)
+	public View registUser(@FormParam("id") String id,
 			@FormParam("password") String password,
 			@FormParam("username") String userName,
 			@FormParam("age") String age,
@@ -140,10 +145,10 @@ public class UserResource {
 			user.setCellphone(cellphone);
 			registerResult.setRegistered(true);
 			registerResult.setUser(user);
-			return registerResult;
+			return new LoginView();
 		} catch (Exception e) {
 			registerResult.setRegistered(false);
-			return registerResult;
+			return new LoginView();
 		}
 	}
 

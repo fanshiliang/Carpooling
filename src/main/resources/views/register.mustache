@@ -1,0 +1,77 @@
+{{<master}}
+{{$title}}Register{{/title}}
+
+
+{{$mainContent}}
+    <div class="service-block">
+  <div class="container">
+    <center class="col-md-6 col-md-offset-3">
+      <form class="form-horizontal" action="http://127.0.0.1:12306/user/register"
+      method="post" id="form1">
+        <h2 class="form-signin-heading">
+          CarPooling Message
+        </h2>
+        <div class="row">
+        <input type="text" class="form-control" name="id" placeholder="id" required>
+        </div>
+        <div class="row">
+        <input type="password" class="form-control" name="password" placeholder="password"
+        required>
+        </div>
+        <div class="row">
+        <input type="text" class="form-control" name="age" placeholder="age" required>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+              Is Car Owner
+            </div>
+            <div class="col-md-3">
+              <label>
+                <input type="radio" value="yes" name="carOwner" checked>
+                 yes
+              </label>
+            </div>
+            <div class="col-md-3">
+            <label>
+              <input type="radio" value="no" name="carOwner">
+              no            
+              </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+              Gender
+            </div>
+            <div class="col-md-3">
+              <label>
+                <input type="radio" value="male" name="gender" checked>
+                 Male
+              </label>
+            </div>
+            <div class="col-md-3">
+            <label>
+              <input type="radio" value="female" name="gender">
+              Female          
+              </label>
+            </div>
+        </div>
+
+        <div class="row">
+        <input type="text" class="form-control" name="cellphone" placeholder="cellphone"
+        required>
+         </div>
+        <div class="row">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="raise">
+          Register
+        </button>
+        </div>
+      </form>
+    </center>
+  </div>
+</div>
+
+{{/mainContent}}
+
+
+{{/master}}

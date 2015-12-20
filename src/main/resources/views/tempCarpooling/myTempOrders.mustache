@@ -68,7 +68,7 @@
         //$('#orders').DataTable();
         console.info($('#userid').html());
         $.ajax({
-          url: 'http://127.0.0.1:12306/order/availableOrders/jingshihao/Temp',
+          url: 'http://127.0.0.1:12306/order/availableOrders/'+username+'/Temp',
           type: 'GET',
           dataType : "json", 
           success: function(data){
@@ -94,7 +94,7 @@
                     {
                         "mData": null,
                         "mRender": function(data, type, full) {
-                          return '<a class="btn btn-info btn-sm" href="http://127.0.0.1:12306/order/join/jingshihao/'+ full[0] + '">' + 'Join' + '</a>';
+                          return '<a class="btn btn-info btn-sm" href="http://127.0.0.1:12306/order/join/'+username+'/'+ full[0] + '">' + 'Join' + '</a>';
                         }
                     }
                 ]

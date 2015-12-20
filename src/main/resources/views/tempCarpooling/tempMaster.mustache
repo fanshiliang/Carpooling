@@ -56,7 +56,7 @@
               </a>
             </li>
             <li>
-              <a href="#contact">
+              <a id="test" href="#contact">
                 Contact
               </a>
             </li>
@@ -90,9 +90,19 @@
                 </li>
               </ul>
             </li>
-      	<li>
+               <li>
                   <a id="userid" href="#">
-                    {{username}}
+                    
+                  </a>
+                </li>
+                 <li>
+                  <a href="/logout">
+                    Logout
+                  </a>
+                </li>
+                <li>
+                  <a href="/register">
+                    Register
                   </a>
                 </li>
           </ul>
@@ -118,6 +128,27 @@
     </footer>
   <script src="/assets/js/jquery.min.js"></script>
   <script src="/assets/js/bootstrap.min.js"></script>
+  <script>
+
+    function getCookie(name) { 
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+     
+        if(arr=document.cookie.match(reg))
+     
+            return unescape(arr[2]); 
+        else 
+            return null; 
+    } 
+    var username = getCookie("SappUserId");
+
+    $(function() {
+        $userid = $('#userid');
+        $userid.html(getCookie("SappUserId"));
+        $('#test').click(function(){
+            console.info("username: "+username);
+        });
+    });
+  </script>
   {{$pageScripts}}
   
   {{/pageScripts}}

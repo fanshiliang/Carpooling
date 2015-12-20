@@ -102,19 +102,12 @@ public class OrderResource {
 	
 	@Path("/join/{id}/{orderNum}")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public boolean joinOrder(@PathParam("id") String id,
+	@Produces(MediaType.TEXT_HTML)
+	public View joinOrder(@PathParam("id") String id,
 			@PathParam("orderNum") int orderNum) {
-		Order newOrder = myDAO.findOrderById(orderNum);
-		List<Order> onGoing = myDAO.findUserOngoingOrder(id);
-		for(Order order: onGoing){
-			if(!compareTime(order.getTime(), newOrder.getTime())){
-				return false;
-			}				
-		}
 		myDAO.insertUserOrder(id, orderNum);
 		myDAO.subTractSeatsAvaible(orderNum);
-		return true;
+		return new MyOrdersView(null);	
 	}
 	
 	@Path("/cancle/{id}/{orderNum}")

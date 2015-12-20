@@ -4,7 +4,7 @@
     <div class="service-block">
       <div class="container">
       <center>
-        <form class="form-signin"  action="http://127.0.0.1:12306/order/raiseOrder/jingshihao" method="post" id="form1">
+        <form class="form-signin"  method="post" id="form1">
           <h2 class="form-signin-heading">
             CarPooling Message
           </h2>
@@ -42,6 +42,7 @@
 {{$pageScripts}}
   <script src="/assets/js/datatables.min.js"></script>
 	<script type="text/javascript">
+
             var num = 0;
             function addNewLine()
             {
@@ -68,6 +69,9 @@
               num++;
             }
 		    $(document).ready(function() {
+            $form1 = $('#form1');
+            $form1.attr("action","http://127.0.0.1:12306/order/raiseOrder/"+username);
+            
             $('#raise').click(function combineHour(){
     			    $('#time').attr("value",$('#hour').val()+":"+$('#minute').val()+":00");
     			    for(var i=0;i<num;i++){
