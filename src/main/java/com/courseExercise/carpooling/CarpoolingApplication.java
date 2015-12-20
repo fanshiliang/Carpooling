@@ -21,6 +21,7 @@ import com.courseExercise.carpooling.resources.HomeResource;
 import com.courseExercise.carpooling.resources.UserResource;
 
 import io.dropwizard.jdbi.DBIFactory;
+import io.dropwizard.jetty.setup.ServletEnvironment;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
@@ -105,14 +106,13 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
     	configureCors(environment);
     	
         final Template template = configuration.buildTemplate();
-        environment.healthChecks().register("template", new TemplateHealthCheck(template));
-        environment.jersey().register(DateRequiredFeature.class);
-        environment.jersey().register(RolesAllowedDynamicFeature.class);
-        environment.jersey().register(SecurityFilter.class);
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
         final MyDAO myDAO = jdbi.onDemand(MyDAO.class);
-        
+        environment.healthChecks().register("template", new TemplateHealthCheck(template));
+        environment.jersey().register(DateRequiredFeature.class);
+        environment.jersey().register(RolesAllowedDynamicFeature.class);
+        //environment.jersey().register(new SecurityFilter(new AuthServiceImpl(6*60*60, new ClientServiceImpl(myDAO))));    
         environment.jersey().register(myDAO);
         environment.jersey().register(new UserResource(myDAO));
         environment.jersey().register(new OrderResource(myDAO));
@@ -125,8 +125,6 @@ public class CarpoolingApplication extends Application<CarpoolingConfiguration> 
 //                .setRealm("SUPER SECRET STUFF")
 //                .buildAuthFilter()));
         configureCors(environment);
-
-
        /* environment.jersey().register(AuthFactory.binder)
         environment.jersey().register(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<UserAuthorization>()
                 .setAuthenticator()
