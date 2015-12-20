@@ -131,23 +131,11 @@ public class UserResource {
 			@FormParam("drivingYears") String drivingYears,
 			@FormParam("gender") String gender,
 			@FormParam("cellphone") String cellphone) {
-		RegisterResult registerResult = new RegisterResult();
 		try {
 			myDAO.insertUser(id, userName, password, age, carOwner,
 					drivingYears, gender, cellphone);
-			User user = new User(id);
-			user.setPassword(password);
-			user.setUserName(userName);
-			user.setCarOwner(carOwner);
-			user.setDrivingYears(drivingYears);
-			user.setAge(age);
-			user.setGender(gender);
-			user.setCellphone(cellphone);
-			registerResult.setRegistered(true);
-			registerResult.setUser(user);
 			return new LoginView();
 		} catch (Exception e) {
-			registerResult.setRegistered(false);
 			return new LoginView();
 		}
 	}
