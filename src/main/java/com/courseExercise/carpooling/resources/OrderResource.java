@@ -47,10 +47,21 @@ public class OrderResource {
 	@GET
 	@Produces("application/json")
 	public List<Order> findAvailableTempOrders(@PathParam("id") String id, @PathParam("orderType") String orderType) {
-		return myDAO.findAvailableOders(id, orderType);
+		List<Order> possibleOrders = myDAO.findAvailableOders(id, orderType);
+		List<Order> ongoingOrders = myDAO.findUserOngoingOrder(id);
+		if(ongoingOrders.size() == 0) return possibleOrders;
+		List<Order> availableOrder = new ArrayList();
+		for(Order possible: possibleOrders ){
+			for(Order ongoing: ongoingOrders){
+				if(compareTime(possible.getTime(), ongoing.getTime())){
+					availableOrder.add(possible);
+				}	
+			}					
+		}
+		return availableOrder;
 	}
 
-	@Path("/raiseOrder")
+	@Path("/raiseOrder/{id}")
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -61,16 +72,14 @@ public class OrderResource {
 			@FormParam("seatAvailable") String seatAvailable,
 			@FormParam("route") String route,
 			@FormParam("starting") String starting,
-			@FormParam("ending") String ending, @FormParam("id") String id) {
+			@FormParam("ending") String ending, @PathParam("id") String id) {
 
 		newOrderNum++;
 		String status = "ongoing";
 		myDAO.insertTempOrder(newOrderNum, orderType, carType, Integer.parseInt(seatTotal), Integer.parseInt(seatAvailable),
 				startDate, endDate, Time.valueOf(time), starting, ending, route, status);
 		myDAO.insertUserOrder(id, newOrderNum);
-		return new View("/views/tempCarpooling/myTempOrders.mustache", Charsets.UTF_8) {
-		};
-
+		return new MyOrdersView();
 	}
 
 	@Path("/myOrders/{id}")
@@ -90,18 +99,11 @@ public class OrderResource {
 	@Path("/join/{id}/{orderNum}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public boolean joinOrder(@PathParam("id") String id,
+	public View joinOrder(@PathParam("id") String id,
 			@PathParam("orderNum") int orderNum) {
-		Order newOrder = myDAO.findOrderById(orderNum);
-		List<Order> onGoing = myDAO.findUserOngoingOrder(id);
-		for(Order order: onGoing){
-			if(!compareTime(order.getTime(), newOrder.getTime())){
-				return false;
-			}				
-		}
 		myDAO.insertUserOrder(id, orderNum);
 		myDAO.subTractSeatsAvaible(orderNum);
-		return true;
+		return new MyOrdersView();
 	}
 	
 	@Path("/cancle/{id}/{orderNum}")
