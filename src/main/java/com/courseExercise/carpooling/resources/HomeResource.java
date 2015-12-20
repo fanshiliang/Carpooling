@@ -17,6 +17,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
@@ -34,6 +35,7 @@ import com.courseExercise.carpooling.auth.AuthService;
 import com.courseExercise.carpooling.auth.BasicAuthService;
 import com.courseExercise.carpooling.auth.SimpleAuthenticator;
 import com.courseExercise.carpooling.views.LoginView;
+import com.courseExercise.carpooling.views.NavigationView;
 import com.courseExercise.carpooling.views.TestNavigationView;
 
 @Path("/")
@@ -75,8 +77,8 @@ public class HomeResource {
 	@GET
 	@Path("navigation")
 	@Produces(MediaType.TEXT_HTML)
-	public View getNavigation(@Auth UserAuthorization authorization){
-		return new TestNavigationView(authorization);
+	public View getNavigation(@QueryParam("u") String username ){
+		return new NavigationView(new UserAuthorization(username, null));
 	}
 	
 	@POST
