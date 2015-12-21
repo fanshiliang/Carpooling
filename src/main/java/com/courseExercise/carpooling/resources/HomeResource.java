@@ -49,13 +49,18 @@ public class HomeResource {
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public  Response getView(@Context HttpServletRequest request){
-		LoginToken token = new LoginToken(request.getCookies());
 		String redirectUrl;
-		if(token != null && (token = authService.verifyAuthentication(token))!=null){			
-			redirectUrl ="/navigation";
-		}else{
-			redirectUrl = "/signin";
+		if(request.getCookies() != null){
+			LoginToken token = new LoginToken(request.getCookies());
+			
+			if(token != null && (token = authService.verifyAuthentication(token))!=null){			
+				redirectUrl ="/navigation";
+			}else{
+				redirectUrl = "/signin";
+			}
 		}
+		else
+			redirectUrl = "/signin";
 		return Response.temporaryRedirect(URI.create(redirectUrl)).build();		
 	}
 	

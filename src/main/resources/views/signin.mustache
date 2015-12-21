@@ -53,15 +53,20 @@ $.ajax
     "u":userName,
     "p":passWord,
   }),
-  success: function (){
-
-    window.location.href = "/"
-  }
+ complete:   function(response, status) {
+                        console.log(response.status);
+                        if(response.status != '200')
+                        {
+                        	alert("invalid username or password")
+                        	window.location.href='/';
+                        }
+                        else {
+                        	window.location.href='/navigation';
+                        }
+                        // do something
+                  }
 });
-console.info("success login");
-    window.location.href='/navigation';
-};
-
+}
 </script>
 {{/pageScripts}}
 {{/master}}
