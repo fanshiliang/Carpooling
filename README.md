@@ -36,7 +36,7 @@ To test this application run the following commands.
 
 * To run the server run.
 
-        java -jar target/carpooling-1.0.jar server example.yml
+        java -jar target/carpooling-1.0.jar server carpooling.yml
 
 * To hit the Hello World example (hit refresh a few times).
 
